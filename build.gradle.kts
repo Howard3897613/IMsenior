@@ -1,9 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    id("com.google.gms.google-services") version "4.4.2" apply false
-    id("com.android.application")
-    id("com.google.gms.google-services")
+    id("com.google.gms.google-services")version "4.4.2" apply false
 }
 
 android {
@@ -65,4 +63,6 @@ dependencies {
     // Add the dependency for the Realtime Database library
     // When using the BoM, you don't specify versions in Firebase library dependencies
     implementation("com.google.firebase:firebase-database")
+    //網路請求
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
 }

@@ -45,4 +45,23 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    implementation ("androidx.camera:camera-core:1.3.0")
+    implementation ("androidx.camera:camera-camera2:1.3.0")
+    implementation ("androidx.camera:camera-lifecycle:1.3.0")
+    implementation ("androidx.camera:camera-view:1.3.0")
+
+    // ML Kit 條碼掃描
+    implementation ("com.google.mlkit:barcode-scanning:17.2.0")
+
+    // OkHttp
+    implementation ("com.squareup.okhttp3:okhttp:4.9.3")
+
+    // Firebase
+    implementation ("com.google.firebase:firebase-database-ktx")
+    // Import the BoM for the Firebase platform
+    implementation(platform("com.google.firebase:firebase-bom:33.10.0"))
+
+    // Add the dependency for the Realtime Database library
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation("com.google.firebase:firebase-database")
 }

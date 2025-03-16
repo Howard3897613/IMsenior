@@ -51,6 +51,10 @@ class MainActivity : AppCompatActivity() {
         apiHelper.fetchFoodData(testBarcode) { productName, genericName ->
             runOnUiThread {
                 Toast.makeText(this, "名稱: $productName\n分類: $genericName", Toast.LENGTH_LONG).show()
+                val ProductEd = findViewById<EditText>(R.id.editProdect)
+                val GenericEd = findViewById<EditText>(R.id.editGeneric)
+                ProductEd.setText(productName)
+                GenericEd.setText(genericName)
             }
         }
     }

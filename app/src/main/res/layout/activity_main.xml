@@ -7,14 +7,43 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <EditText
+        android:id="@+id/editProdect"
+        android:layout_width="266dp"
+        android:layout_height="48dp"
+        android:ems="10"
+        android:hint="請輸入產品名稱"
+        android:inputType="text"
+        android:text=""
+        app:layout_constraintStart_toStartOf="@+id/Product"
+        app:layout_constraintTop_toBottomOf="@+id/Product" />
+
+    <EditText
+        android:id="@+id/editGeneric"
+        android:layout_width="261dp"
+        android:layout_height="55dp"
+        android:ems="10"
+        android:hint="請輸入通用名稱"
+        android:inputType="text"
+        android:text=""
+        app:layout_constraintStart_toStartOf="@+id/Generic"
+        app:layout_constraintTop_toBottomOf="@+id/Generic" />
+
     <TextView
+        android:id="@+id/Product"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:text="產品名稱"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/Generic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="通用名稱"
+        app:layout_constraintStart_toStartOf="@+id/editProdect"
+        app:layout_constraintTop_toBottomOf="@+id/editProdect" />
     <!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent">

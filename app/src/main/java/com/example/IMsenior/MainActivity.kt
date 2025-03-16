@@ -40,6 +40,56 @@ import java.util.Locale
 
 
 class MainActivity : AppCompatActivity() {
+    private val apiHelper = ApiHelper()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        // 測試條碼 (用實際條碼代替 737628064502)
+        val testBarcode = "737628064502"
+        apiHelper.fetchFoodData(testBarcode) { productName, genericName ->
+            runOnUiThread {
+                Toast.makeText(this, "名稱: $productName\n分類: $genericName", Toast.LENGTH_LONG).show()
+            }
+        }
+    }
+}
+
+class ApiHelper {
+    private val client = OkHttpClient()
+
+    fun fetchFoodData(barcode: String, callback: (String, String) -> Unit) {
+        val url = "https://world.openfoodfacts.org/api/v2/product/$barcode.json"
+        val request = Request.Builder().url(url).build()
+
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                Log.e("API_ERROR", "無法取得資料: ${e.message}")
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                val jsonResponse = response.body?.string()
+                if (jsonResponse != null) {
+                    try {
+                        val jsonObject = JSONObject(jsonResponse)
+                        val product = jsonObject.optJSONObject("product")
+                        val productName = product?.optString("product_name", "未知") ?: "未知"
+                        val genericName = product?.optString("generic_name", "未知") ?: "未知"
+
+                        // 回傳結果
+                        callback(productName, genericName)
+                    } catch (e: Exception) {
+                        Log.e("JSON_ERROR", "解析失敗: ${e.message}")
+                    }
+                }
+            }
+        })
+    }
+}
+
+/*
+class MainActivity : AppCompatActivity() {
     private lateinit var cameraProviderFuture: ListenableFuture<ProcessCameraProvider>
     private lateinit var database: DatabaseReference
 
@@ -163,3 +213,4 @@ class MainActivity : AppCompatActivity() {
             .addOnFailureListener { e -> Log.e("DB_ERROR", "儲存失敗: ${e.message}") }
     }
 }
+*/

@@ -44,6 +44,13 @@
         android:text="通用名稱"
         app:layout_constraintStart_toStartOf="@+id/editProdect"
         app:layout_constraintTop_toBottomOf="@+id/editProdect" />
+<!--<androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="302dp"
+        android:layout_height="486dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editGeneric" />-->
+
     <!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent">

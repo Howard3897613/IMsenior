@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "834126442496",
+    "firebase_url": "https://imsenior-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "imsenior",
+    "storage_bucket": "imsenior.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:834126442496:android:02a881b9bfa86ae71428e5",
+        "android_client_info": {
+          "package_name": "com.example.IMsenior"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtBkC2JrOFN6FhbkUbV5fXGg4ISU81IhA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

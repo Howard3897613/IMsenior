@@ -7,64 +7,26 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <EditText
-        android:id="@+id/editProdect"
-        android:layout_width="266dp"
-        android:layout_height="48dp"
-        android:ems="10"
-        android:hint="請輸入產品名稱"
-        android:inputType="text"
-        android:text=""
-        app:layout_constraintStart_toStartOf="@+id/Product"
-        app:layout_constraintTop_toBottomOf="@+id/Product" />
-
-    <EditText
-        android:id="@+id/editGeneric"
-        android:layout_width="261dp"
-        android:layout_height="55dp"
-        android:ems="10"
-        android:hint="請輸入通用名稱"
-        android:inputType="text"
-        android:text=""
-        app:layout_constraintStart_toStartOf="@+id/Generic"
-        app:layout_constraintTop_toBottomOf="@+id/Generic" />
+    <Button
+        android:id="@+id/btntoAdd"
+        android:layout_width="134dp"
+        android:layout_height="68dp"
+        android:layout_marginEnd="84dp"
+        android:layout_marginBottom="60dp"
+        android:text="新增"
+        app:icon="@drawable/baseline_add_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
-        android:id="@+id/Product"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="產品名稱"
+        android:id="@+id/tvMeal"
+        android:layout_width="176dp"
+        android:layout_height="115dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="16dp"
+        android:text="TextView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/Generic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="通用名稱"
-        app:layout_constraintStart_toStartOf="@+id/editProdect"
-        app:layout_constraintTop_toBottomOf="@+id/editProdect" />
-<!--<androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="302dp"
-        android:layout_height="486dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editGeneric" />-->
-
-    <!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <androidx.camera.view.PreviewView
-            android:id="@+id/previewView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-
-    </RelativeLayout>
-    -->
-
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

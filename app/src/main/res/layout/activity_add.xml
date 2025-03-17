@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity_add">
+
+    <EditText
+        android:id="@+id/editProdect"
+        android:layout_width="266dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="4dp"
+        android:ems="10"
+        android:hint="請輸入產品名稱"
+        android:inputType="text"
+        android:text=""
+        app:layout_constraintStart_toStartOf="@+id/Product"
+        app:layout_constraintTop_toBottomOf="@+id/Product" />
+
+    <EditText
+        android:id="@+id/editGeneric"
+        android:layout_width="261dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:hint="請輸入通用名稱"
+        android:inputType="text"
+        android:text=""
+        app:layout_constraintStart_toStartOf="@+id/Generic"
+        app:layout_constraintTop_toBottomOf="@+id/Generic" />
+
+    <TextView
+        android:id="@+id/Product"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="84dp"
+        android:text="產品名稱"
+        app:layout_constraintStart_toStartOf="@+id/EtBarcode"
+        app:layout_constraintTop_toBottomOf="@+id/EtBarcode" />
+
+    <TextView
+        android:id="@+id/Generic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="通用名稱"
+        app:layout_constraintStart_toStartOf="@+id/editProdect"
+        app:layout_constraintTop_toBottomOf="@+id/editProdect" />
+
+    <RadioGroup
+        android:id="@+id/category"
+        android:layout_width="282dp"
+        android:layout_height="89dp"
+        android:layout_marginTop="92dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="@+id/editGeneric"
+        app:layout_constraintTop_toBottomOf="@+id/editGeneric">
+
+        <RadioButton
+            android:id="@+id/food"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="食物" />
+
+        <RadioButton
+            android:id="@+id/source"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="食材" />
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/EtBarcode"
+        android:layout_width="252dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="28dp"
+        android:ems="10"
+        android:hint="請輸入barcode"
+        android:inputType="text"
+        android:text=""
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/confirm_barcode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="確認"
+        app:layout_constraintStart_toEndOf="@+id/EtBarcode"
+        app:layout_constraintTop_toTopOf="@+id/EtBarcode" />
+
+    <Button
+        android:id="@+id/finish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="92dp"
+        android:layout_marginEnd="76dp"
+        android:text="新增"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/category" />
+</androidx.constraintlayout.widget.ConstraintLayout>

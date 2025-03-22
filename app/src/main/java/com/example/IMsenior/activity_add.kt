@@ -1,5 +1,6 @@
 package com.example.IMsenior
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -13,6 +14,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.firebase.Firebase
+import com.google.firebase.firestore.firestore
 import okhttp3.Call
 import okhttp3.Callback
 import okhttp3.OkHttpClient
@@ -37,6 +40,7 @@ class activity_add : AppCompatActivity() {
         val GenericEd = findViewById<EditText>(R.id.editGeneric)
         val finish = findViewById<Button>(R.id.finish)
         val category = findViewById<RadioGroup>(R.id.category)
+        val db = Firebase.firestore
         comfirm_Barcode.setOnClickListener {
             val testBarcode = findViewById<EditText>(R.id.EtBarcode).text.toString()
             apiHelper.fetchFoodData(testBarcode) { productName, genericName ->
@@ -53,10 +57,20 @@ class activity_add : AppCompatActivity() {
                 "productName" to ProductEd.text.toString(),
                 "genericName" to GenericEd.text.toString(),
                 "category" to category.findViewById<RadioButton>(category.checkedRadioButtonId).text.toString()
-
-
-
             )
+            val data = hashMapOf(
+                "name" to "Tokyo",
+                "country" to "Japan",
+            )
+
+            db.collection("foods")
+                .add(data)
+                .addOnSuccessListener { documentReference ->
+                    Log.d(TAG, "DocumentSnapshot written with ID: ${documentReference.id}")
+                }
+                .addOnFailureListener { e ->
+                    Log.w(TAG, "Error adding document", e)
+                }
             val i = Intent().putExtras(b)
             setResult(RESULT_OK,i)
             finish()

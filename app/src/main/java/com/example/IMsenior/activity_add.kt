@@ -53,13 +53,13 @@ class activity_add : AppCompatActivity() {
         }
 
         finish.setOnClickListener {
-            val b = bundleOf(
+            /*val b = bundleOf(
                 "productName" to ProductEd.text.toString(),
                 "genericName" to GenericEd.text.toString(),
                 "category" to category.findViewById<RadioButton>(category.checkedRadioButtonId).text.toString()
-            )
+            )*/
             val data = hashMapOf(
-                "name" to "Tokyo",
+                "name" to ProductEd.text.toString(),
                 "country" to "Japan",
             )
 
@@ -71,8 +71,8 @@ class activity_add : AppCompatActivity() {
                 .addOnFailureListener { e ->
                     Log.w(TAG, "Error adding document", e)
                 }
-            val i = Intent().putExtras(b)
-            setResult(RESULT_OK,i)
+            //val i = Intent().putExtras(b)
+            //setResult(RESULT_OK,i)
             finish()
         }
 

@@ -9,6 +9,7 @@
 
     <EditText
         android:id="@+id/editProdect"
+
         android:layout_width="266dp"
         android:layout_height="48dp"
         android:layout_marginTop="4dp"
@@ -17,7 +18,8 @@
         android:inputType="text"
         android:text=""
         app:layout_constraintStart_toStartOf="@+id/Product"
-        app:layout_constraintTop_toBottomOf="@+id/Product" />
+        app:layout_constraintTop_toBottomOf="@+id/Product"/>
+
 
     <EditText
         android:id="@+id/editGeneric"

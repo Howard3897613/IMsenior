@@ -6,6 +6,6 @@ data class Food(
     val brand: String,
     val category: Int,
     val createDate: String,
-    val endDate: String,
+    val endDate: Int,
     val quantityUnit: String
 )

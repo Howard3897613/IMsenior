@@ -1,17 +1,13 @@
 package com.example.IMsenior
 
 import android.content.ContentValues.TAG
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
-import android.widget.RadioButton
 import android.widget.RadioGroup
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.os.bundleOf
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.Firebase
@@ -23,6 +19,9 @@ import okhttp3.Request
 import okhttp3.Response
 import okio.IOException
 import org.json.JSONObject
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class activity_add : AppCompatActivity() {
     private val apiHelper = ApiHelper()
@@ -37,17 +36,20 @@ class activity_add : AppCompatActivity() {
         }
         val comfirm_Barcode = findViewById<Button>(R.id.confirm_barcode)
         val ProductEd = findViewById<EditText>(R.id.editProdect)
-        val GenericEd = findViewById<EditText>(R.id.editGeneric)
+        val enddateEd = findViewById<EditText>(R.id.editenddate)
+        val brandEd = findViewById<EditText>(R.id.editBrand)
         val finish = findViewById<Button>(R.id.finish)
         val category = findViewById<RadioGroup>(R.id.category)
+        val quantity = findViewById<EditText>(R.id.quantity)
         val db = Firebase.firestore
         comfirm_Barcode.setOnClickListener {
             val testBarcode = findViewById<EditText>(R.id.EtBarcode).text.toString()
-            apiHelper.fetchFoodData(testBarcode) { productName, genericName ->
+            apiHelper.fetchFoodData(testBarcode) { productName, Brand ,Quantity ->
                 runOnUiThread {
 
                     ProductEd.setText(productName)
-                    GenericEd.setText(genericName)
+                    brandEd.setText(Brand)
+                    quantity.setText(Quantity)
                 }
             }
         }
@@ -58,9 +60,18 @@ class activity_add : AppCompatActivity() {
                 "genericName" to GenericEd.text.toString(),
                 "category" to category.findViewById<RadioButton>(category.checkedRadioButtonId).text.toString()
             )*/
+            val formatter = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
             val data = hashMapOf(
-                "name" to ProductEd.text.toString(),
-                "country" to "Japan",
+                "productName" to ProductEd.text.toString(),
+                "brand" to brandEd.text.toString(),
+                "category" to when (category.checkedRadioButtonId) {
+                    R.id.food -> 1
+                    R.id.source -> 2
+                    else -> 0
+                },
+                "createDate" to formatter.format(Date()),
+                "endDate" to enddateEd.text.toString().toInt(),
+                "quantityUnit" to quantity.text.toString()
             )
 
             db.collection("foods")
@@ -84,7 +95,7 @@ class activity_add : AppCompatActivity() {
 class ApiHelper {
     private val client = OkHttpClient()
 
-    fun fetchFoodData(barcode: String, callback: (String, String) -> Unit) {
+    fun fetchFoodData(barcode: String, callback: (String, String,String) -> Unit) {
         val url = "https://world.openfoodfacts.org/api/v2/product/$barcode.json"
         val request = Request.Builder().url(url).build()
 
@@ -100,10 +111,11 @@ class ApiHelper {
                         val jsonObject = JSONObject(jsonResponse)
                         val product = jsonObject.optJSONObject("product")
                         val productName = product?.optString("product_name", "未知") ?: "未知"
-                        val genericName = product?.optString("generic_name", "未知") ?: "未知"
+                        val Brand = product?.optString("brands", "未知") ?: "未知"
+                        val quantityUnit = product?.optString("serving_size", "未知") ?: "未知"
 
                         // 回傳結果
-                        callback(productName, genericName)
+                        callback(productName, Brand ,quantityUnit)
                     } catch (e: Exception) {
                         Log.e("JSON_ERROR", "解析失敗: ${e.message}")
                     }

@@ -1,10 +1,12 @@
 package com.example.IMsenior
 
+import android.app.DatePickerDialog
 import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.RadioGroup
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -20,6 +22,7 @@ import okhttp3.Response
 import okio.IOException
 import org.json.JSONObject
 import java.text.SimpleDateFormat
+import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 
@@ -42,6 +45,7 @@ class activity_add : AppCompatActivity() {
         val category = findViewById<RadioGroup>(R.id.category)
         val quantity = findViewById<EditText>(R.id.quantity)
         val db = Firebase.firestore
+        val dateIcon = findViewById<ImageView>(R.id.dateIcon)
         comfirm_Barcode.setOnClickListener {
             val testBarcode = findViewById<EditText>(R.id.EtBarcode).text.toString()
             apiHelper.fetchFoodData(testBarcode) { productName, Brand ,Quantity ->
@@ -54,6 +58,9 @@ class activity_add : AppCompatActivity() {
             }
         }
 
+        dateIcon.setOnClickListener{
+            showDatePickerDialog(enddateEd)
+        }
         finish.setOnClickListener {
             /*val b = bundleOf(
                 "productName" to ProductEd.text.toString(),
@@ -90,6 +97,26 @@ class activity_add : AppCompatActivity() {
 
 
     }
+
+
+    private fun showDatePickerDialog(enddateed: EditText) {
+        // 獲取當前日期
+        val calendar = Calendar.getInstance()
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+        val day = calendar.get(Calendar.DAY_OF_MONTH)
+
+        // 創建並顯示 DatePickerDialog
+
+        val datePickerDialog = DatePickerDialog(this, { _, selectedYear, selectedMonth, selectedDay ->
+            val formattedMonth = String.format("%02d", selectedMonth + 1) // 月份從 0 開始，所以要 +1
+            val formattedDay = String.format("%02d", selectedDay)
+            val selectedDate = "$selectedYear$formattedMonth$formattedDay"
+            enddateed.setText(selectedDate) // 更新 EditText 顯示選擇的日期
+        }, year, month, day)
+
+        datePickerDialog.show()
+    }
 }
 
 class ApiHelper {
@@ -123,4 +150,6 @@ class ApiHelper {
             }
         })
     }
+
+
 }

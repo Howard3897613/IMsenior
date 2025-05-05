@@ -67,7 +67,7 @@ class activity_add : AppCompatActivity() {
                 "genericName" to GenericEd.text.toString(),
                 "category" to category.findViewById<RadioButton>(category.checkedRadioButtonId).text.toString()
             )*/
-            val formatter = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+            val formatter = SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.getDefault())
             val data = hashMapOf(
                 "productName" to ProductEd.text.toString(),
                 "brand" to brandEd.text.toString(),

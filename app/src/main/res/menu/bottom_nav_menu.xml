@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_recipe"
+        android:icon="@drawable/view_list"
+        android:title="食譜" />
+
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/home_edit_outline"
+        android:title="首頁" />
+    <item
+        android:id="@+id/nav_add"
+        android:icon="@drawable/baseline_add_24"
+        android:title="新增" />
+
+</menu>

@@ -9,11 +9,11 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btntoAdd"
-        style="@style/Widget.MaterialComponents.Button.TextButton"
+        style="@style/Widget.Material3.Button.ElevatedButton.Icon"
         android:layout_width="134dp"
         android:layout_height="68dp"
-        android:layout_marginEnd="84dp"
-        android:layout_marginBottom="60dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginBottom="156dp"
         android:text="新增"
         app:icon="@drawable/baseline_add_24"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -23,11 +23,22 @@
         android:id="@+id/tvMeal"
         android:layout_width="176dp"
         android:layout_height="115dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="160dp"
         android:text="TextView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_nav_menu" />
+
+
 
 
 

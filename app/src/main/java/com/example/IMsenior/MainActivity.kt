@@ -22,6 +22,7 @@ import androidx.activity.result.ActivityResult
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.firestore.FirebaseFirestore
 
 class MainActivity : AppCompatActivity() {
@@ -63,6 +64,25 @@ class MainActivity : AppCompatActivity() {
         btntoAdd.setOnClickListener {
             val intent = Intent(this, activity_add::class.java)
             startForResult.launch(intent)
+        }
+        val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNav)
+
+        bottomNav.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_home -> {
+                    Toast.makeText(this, "這是一個提示訊息，首頁", Toast.LENGTH_SHORT).show()
+                    true
+                }
+                R.id.nav_add -> {
+                    Toast.makeText(this, "+++", Toast.LENGTH_SHORT).show()
+                    true
+                }
+                R.id.nav_recipe -> {
+                    Toast.makeText(this, "菜單", Toast.LENGTH_SHORT).show()
+                    true
+                }
+                else -> false
+            }
         }
 
 

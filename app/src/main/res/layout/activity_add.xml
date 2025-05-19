@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".activity_add">
 
+
     <EditText
         android:id="@+id/editProdect"
 
@@ -18,8 +19,7 @@
         android:inputType="text"
         android:text=""
         app:layout_constraintStart_toStartOf="@+id/Product"
-        app:layout_constraintTop_toBottomOf="@+id/Product"/>
-
+        app:layout_constraintTop_toBottomOf="@+id/Product" />
 
     <EditText
         android:id="@+id/editenddate"
@@ -58,7 +58,7 @@
         android:layout_height="89dp"
         android:layout_marginTop="64dp"
         android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="@+id/editenddate"
+        app:layout_constraintStart_toStartOf="@+id/editBrand"
         app:layout_constraintTop_toBottomOf="@+id/editBrand">
 
         <RadioButton
@@ -90,6 +90,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
+        style="@style/Widget.Material3.Button.TonalButton"
         android:id="@+id/confirm_barcode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -121,8 +122,8 @@
         android:layout_width="286dp"
         android:layout_height="56dp"
         android:ems="10"
-        android:inputType="text"
         android:hint="請輸入品牌名稱"
+        android:inputType="text"
         app:layout_constraintStart_toStartOf="@+id/Brand"
         app:layout_constraintTop_toBottomOf="@+id/Brand" />
 
@@ -143,4 +144,5 @@
         app:layout_constraintBottom_toBottomOf="@+id/editenddate"
         app:layout_constraintStart_toEndOf="@+id/editenddate"
         app:srcCompat="@android:drawable/ic_menu_agenda" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

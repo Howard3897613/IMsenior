@@ -62,6 +62,9 @@ dependencies {
     implementation("com.google.firebase:firebase-firestore")
     implementation ("com.google.android.material:material:1.12.0")
 
+    // ZXing 掃描庫
+    implementation ("com.journeyapps:zxing-android-embedded:4.3.0")
+
 
 
 

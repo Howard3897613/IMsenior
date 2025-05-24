@@ -8,12 +8,16 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.RadioGroup
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
+import com.journeyapps.barcodescanner.ScanContract
+import com.journeyapps.barcodescanner.ScanOptions
 import okhttp3.Call
 import okhttp3.Callback
 import okhttp3.OkHttpClient
@@ -28,6 +32,16 @@ import java.util.Locale
 
 class activity_add : AppCompatActivity() {
     private val apiHelper = ApiHelper()
+
+    private val barcodeLauncher = registerForActivityResult(ScanContract()) { result ->
+        if (result.contents != null) {
+            Toast.makeText(this, "掃描結果: ${result.contents}", Toast.LENGTH_LONG).show()
+            val testBarcode = findViewById<EditText>(R.id.EtBarcode)
+            testBarcode.setText(result.contents)
+        } else {
+            Toast.makeText(this, "取消掃描", Toast.LENGTH_SHORT).show()
+        }
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -41,14 +55,14 @@ class activity_add : AppCompatActivity() {
         val ProductEd = findViewById<EditText>(R.id.editProdect)
         val enddateEd = findViewById<EditText>(R.id.editenddate)
         val brandEd = findViewById<EditText>(R.id.editBrand)
-        val finish = findViewById<Button>(R.id.finish)
+        //val finish = findViewById<Button>(R.id.finish)
         val category = findViewById<RadioGroup>(R.id.category)
         val quantity = findViewById<EditText>(R.id.quantity)
         val db = Firebase.firestore
         val dateIcon = findViewById<ImageView>(R.id.dateIcon)
         comfirm_Barcode.setOnClickListener {
             val testBarcode = findViewById<EditText>(R.id.EtBarcode).text.toString()
-            apiHelper.fetchFoodData(testBarcode) { productName, Brand ,Quantity ->
+            apiHelper.fetchFoodData(testBarcode) { productName, Brand, Quantity ->
                 runOnUiThread {
 
                     ProductEd.setText(productName)
@@ -57,11 +71,61 @@ class activity_add : AppCompatActivity() {
                 }
             }
         }
+        val addbottomNav = findViewById<BottomNavigationView>(R.id.btmaddv)
 
-        dateIcon.setOnClickListener{
+        addbottomNav.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_scan -> {
+                    Toast.makeText(this, "這是一個提示訊息，scan", Toast.LENGTH_SHORT).show()
+                    val options = ScanOptions()
+                    options.setPrompt("請將條碼置於畫面中央")
+                    options.setBeepEnabled(true)
+                    options.setOrientationLocked(true)
+                    options.setCaptureActivity(CaptureAct::class.java) // 自訂掃描畫面（下一步會定義）
+                    barcodeLauncher.launch(options)
+                    true
+                }
+
+                R.id.nav_check -> {
+                    Toast.makeText(this, "+++", Toast.LENGTH_SHORT).show()
+                    val formatter = SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.getDefault())
+                    val data = hashMapOf(
+                        "productName" to ProductEd.text.toString(),
+                        "brand" to brandEd.text.toString(),
+                        "category" to when (category.checkedRadioButtonId) {
+                            R.id.food -> 1
+                            R.id.source -> 2
+                            else -> 0
+                        },
+                        "createDate" to formatter.format(Date()),
+                        "endDate" to enddateEd.text.toString().toInt(),
+                        "quantityUnit" to quantity.text.toString()
+                    )
+
+                    db.collection("foods")
+                        .add(data)
+                        .addOnSuccessListener { documentReference ->
+                            Log.d(TAG, "DocumentSnapshot written with ID: ${documentReference.id}")
+
+                        }
+                        .addOnFailureListener { e ->
+                            Log.w(TAG, "Error adding document", e)
+                        }
+                    //val i = Intent().putExtras(b)
+                    //setResult(RESULT_OK,i)
+                    finish()
+                    true
+                }
+
+                else -> false
+            }
+        }
+
+        dateIcon.setOnClickListener {
             showDatePickerDialog(enddateEd)
         }
-        finish.setOnClickListener {
+
+        /*finish.setOnClickListener {
             /*val b = bundleOf(
                 "productName" to ProductEd.text.toString(),
                 "genericName" to GenericEd.text.toString(),
@@ -92,7 +156,7 @@ class activity_add : AppCompatActivity() {
             //val i = Intent().putExtras(b)
             //setResult(RESULT_OK,i)
             finish()
-        }
+        }*/
 
 
 

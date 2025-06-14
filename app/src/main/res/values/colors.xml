@@ -2,4 +2,21 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <!-- Your existing colors -->
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+
+    <!-- New Light Color Suggestions -->
+    <color name="colorLightAqua">#AFEEEE</color>
+    <color name="colorPaleYellow">#FFFFE0</color>
+    <color name="colorVeryLightBlue">#E0FFFF</color>
+    <color name="colorLightLavender">#E6E6FA</color>
+    <color name="colorLightPeach">#FFDAB9</color>
+    <color name="colorMintCream">#F5FFFA</color>
+    <color name="colorSeashell">#FFF5EE</color>
+    <color name="colorAliceBlue">#F0F8FF</color>
+
+    <!-- Your original color from the item_food.xml context -->
+    <color name="y">#FFFFFF</color>
 </resources>

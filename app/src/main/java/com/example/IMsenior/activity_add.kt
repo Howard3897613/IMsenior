@@ -32,6 +32,7 @@ import java.util.Locale
 
 class activity_add : AppCompatActivity() {
     private val apiHelper = ApiHelper()
+    private lateinit var foodAdapter: FoodAdapter
 
     private val barcodeLauncher = registerForActivityResult(ScanContract()) { result ->
         if (result.contents != null) {

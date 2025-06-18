@@ -8,6 +8,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.content.Context
+import android.util.Log
+import android.content.ContentValues.TAG
+import com.google.firebase.Firebase
+import com.google.firebase.firestore.firestore
 
 class FoodAdapter(
     private val foodList: List<Food>,
@@ -31,6 +35,7 @@ class FoodAdapter(
 
     override fun onBindViewHolder(holder: FoodViewHolder, position: Int) {
         val food = foodList[position]
+        val db = Firebase.firestore
         holder.name.text = food.productName
         holder.brand.text = food.brand
         holder.category.text = if (food.category == 1) "食材" else "食物"
@@ -39,7 +44,12 @@ class FoodAdapter(
         holder.quantity.text = food.quantityUnit
 
         holder.btnClick.setOnClickListener {
-            Toast.makeText(context, "你點了 ${food.productName}", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "你點了 ${food.id}", Toast.LENGTH_SHORT).show()
+         /*   db.collection("foods").document(food.id)
+            .delete()
+            .addOnSuccessListener { Log.d(TAG, "successfully deleted!") }
+            .addOnFailureListener { e -> Log.w(TAG, "Error deleting document", e) }*/
+
         }
     }
 

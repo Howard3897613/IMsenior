@@ -71,7 +71,7 @@ class MainActivity : AppCompatActivity() {
         foodAdapter = FoodAdapter(foodList, this)
         recyclerView.adapter = foodAdapter
 
-        loadDataFromFirestore()
+        listenToFirestoreChanges()
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNav)
 
         bottomNav.setOnItemSelectedListener { item ->
@@ -82,6 +82,8 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.nav_add -> {
                     Toast.makeText(this, "+++", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, activity_add::class.java)
+                    startActivity(intent)
                     true
                 }
                 R.id.nav_recipe -> {
@@ -93,6 +95,7 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+    /*
     private fun loadDataFromFirestore() {
         db.collection("foods")
             .get()
@@ -110,5 +113,29 @@ class MainActivity : AppCompatActivity() {
             .addOnFailureListener {
                 Toast.makeText(this, "讀取失敗", Toast.LENGTH_SHORT).show()
             }
+    }*/
+    private fun listenToFirestoreChanges() {
+        db.collection("foods")
+            .addSnapshotListener { snapshot, e ->
+                if (e != null) {
+                    Toast.makeText(this, "監聽失敗: ${e.message}", Toast.LENGTH_SHORT).show()
+                    return@addSnapshotListener
+                }
+
+                if (snapshot != null) {
+                    foodList.clear()
+                    for (doc in snapshot.documents) {
+                        val food = doc.toObject(Food::class.java)
+                        if (food != null) {
+                            val foodWithId = food.copy(id = doc.id)
+                            foodList.add(foodWithId)
+                        }
+                    }
+                    foodAdapter.notifyDataSetChanged()
+                } else {
+                    Toast.makeText(this, "無資料", Toast.LENGTH_SHORT).show()
+                }
+            }
     }
+
 }

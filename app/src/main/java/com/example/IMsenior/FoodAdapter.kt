@@ -48,7 +48,8 @@ class FoodAdapter(
          /*   db.collection("foods").document(food.id)
             .delete()
             .addOnSuccessListener { Log.d(TAG, "successfully deleted!") }
-            .addOnFailureListener { e -> Log.w(TAG, "Error deleting document", e) }*/
+            .addOnFailureListener { e -> Log.w(TAG, "Error deleting document", e) }
+            */
 
         }
     }

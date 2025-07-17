@@ -25,6 +25,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ListenerRegistration
 
 class MainActivity : AppCompatActivity() {
 
@@ -32,6 +33,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var foodList: ArrayList<Food>
     private lateinit var foodAdapter: FoodAdapter
     private val db = FirebaseFirestore.getInstance()  // Firestore 實例
+    private var listenerRegistration: ListenerRegistration? = null
 
     /*private val startForResult = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -115,7 +117,8 @@ class MainActivity : AppCompatActivity() {
             }
     }*/
     private fun listenToFirestoreChanges() {
-        db.collection("foods")
+
+        listenerRegistration =db.collection("foods")
             .addSnapshotListener { snapshot, e ->
                 if (e != null) {
                     Toast.makeText(this, "監聽失敗: ${e.message}", Toast.LENGTH_SHORT).show()
@@ -136,6 +139,8 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(this, "無資料", Toast.LENGTH_SHORT).show()
                 }
             }
+
+
     }
 
 }

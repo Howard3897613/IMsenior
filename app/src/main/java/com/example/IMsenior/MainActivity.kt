@@ -73,7 +73,7 @@ class MainActivity : AppCompatActivity() {
         foodAdapter = FoodAdapter(foodList, this)
         recyclerView.adapter = foodAdapter
 
-        listenToFirestoreChanges()
+        //listenToFirestoreChanges()
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNav)
 
         bottomNav.setOnItemSelectedListener { item ->
@@ -97,6 +97,12 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+
+    override fun onResume() {
+        super.onResume()
+        listenToFirestoreChanges()
+    }
+
     /*
     private fun loadDataFromFirestore() {
         db.collection("foods")

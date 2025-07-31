@@ -65,6 +65,11 @@ dependencies {
     // ZXing 掃描庫
     implementation ("com.journeyapps:zxing-android-embedded:4.3.0")
 
+    //Auth
+
+    implementation("com.google.firebase:firebase-auth-ktx")
+    implementation("com.firebaseui:firebase-ui-auth:9.0.0")
+
 
 
 

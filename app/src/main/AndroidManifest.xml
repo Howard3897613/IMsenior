@@ -33,6 +33,8 @@
         <activity android:name=".CaptureAct"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+
+        <activity android:name=".SignInActivity" />
     </application>
 
 </manifest>

@@ -19,17 +19,22 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.result.ActivityResult
+import androidx.core.view.GravityCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.firebase.ui.auth.AuthUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
 
 class MainActivity : AppCompatActivity() {
-
+    private lateinit var drawerLayout: DrawerLayout
+    private lateinit var navView: NavigationView
     private lateinit var recyclerView: RecyclerView
     private lateinit var foodList: ArrayList<Food>
     private lateinit var foodAdapter: FoodAdapter
@@ -104,12 +109,44 @@ class MainActivity : AppCompatActivity() {
                 else -> false
             }
         }
+        drawerLayout = findViewById(R.id.drawer_layout)
+        navView = findViewById(R.id.nav_view)
+
+        // 動態設定 Header 文字
+        val headerView = navView.getHeaderView(0)
+        val headerText = headerView.findViewById<TextView>(R.id.header_text)
+        val userName = user?.displayName ?: "匿名使用者"
+        headerText.text = "哈囉，$userName！"
+        // 處理 Menu 點擊事件
+        navView.setNavigationItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.nav_relog -> {
+                    Toast.makeText(this, "登出中…", Toast.LENGTH_SHORT).show()
+                    AuthUI.getInstance()
+                        .signOut(this)
+                        .addOnCompleteListener {
+                            stopFirestoreListener()
+                            startActivity(Intent(this, SignInActivity::class.java))
+                            finish()
+                        }
+                }
+                R.id.nav_settings -> {
+                    Toast.makeText(this, "你點了設定", Toast.LENGTH_SHORT).show()
+                }
+            }
+            drawerLayout.closeDrawer(GravityCompat.START)
+            true
+        }
 
     }
 
     override fun onResume() {
         super.onResume()
         listenToFirestoreChanges()
+
+
+
+
     }
 
     /*
@@ -157,5 +194,10 @@ class MainActivity : AppCompatActivity() {
 
 
     }
+    private fun stopFirestoreListener() {
+        listenerRegistration?.remove()
+        listenerRegistration = null
+    }
+
 
 }

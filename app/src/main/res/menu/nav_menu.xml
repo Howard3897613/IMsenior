@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_relog"
+        android:icon="@drawable/swap_horizontal"
+        android:title="切換帳號" />
+    <item
+        android:id="@+id/nav_settings"
+        android:icon="@drawable/cog"
+        android:title="設定" />
+</menu>

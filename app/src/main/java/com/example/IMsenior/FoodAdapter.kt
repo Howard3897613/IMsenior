@@ -45,11 +45,11 @@ class FoodAdapter(
 
         holder.btnClick.setOnClickListener {
             Toast.makeText(context, "你點了 ${food.id}", Toast.LENGTH_SHORT).show()
-         /*   db.collection("foods").document(food.id)
+         db.collection("foods").document(food.id)
             .delete()
             .addOnSuccessListener { Log.d(TAG, "successfully deleted!") }
             .addOnFailureListener { e -> Log.w(TAG, "Error deleting document", e) }
-            */
+
 
         }
     }

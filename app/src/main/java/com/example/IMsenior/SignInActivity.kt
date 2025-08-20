@@ -38,6 +38,8 @@ class SignInActivity : AppCompatActivity() {
             .setTheme(R.style.Theme_IMsenior) // optional
             .build()
 
+
+
         signInLauncher.launch(signInIntent)
     }
 }

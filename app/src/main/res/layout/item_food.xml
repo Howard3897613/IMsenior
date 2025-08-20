@@ -76,12 +76,13 @@
 
         <Button
             android:id="@+id/btnClick"
-            android:layout_width="wrap_content"
+            android:layout_width="69dp"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:layout_marginTop="8dp"
-            android:backgroundTint="?attr/colorPrimary"
-            android:text="操作"
-            android:textColor="#fff" />
+            android:backgroundTint="#FF0000"
+            android:text="X"
+            android:textColor="#FFFFFF" />
+
     </LinearLayout>
 </androidx.cardview.widget.CardView>

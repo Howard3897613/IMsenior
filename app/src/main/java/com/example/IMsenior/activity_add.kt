@@ -15,6 +15,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.firestore
 import com.journeyapps.barcodescanner.ScanContract
 import com.journeyapps.barcodescanner.ScanOptions
@@ -102,16 +103,20 @@ class activity_add : AppCompatActivity() {
                         "endDate" to enddateEd.text.toString().toInt(),
                         "quantityUnit" to quantity.text.toString()
                     )
-
-                    db.collection("foods")
-                        .add(data)
-                        .addOnSuccessListener { documentReference ->
-                            Log.d(TAG, "DocumentSnapshot written with ID: ${documentReference.id}")
-
-                        }
-                        .addOnFailureListener { e ->
-                            Log.w(TAG, "Error adding document", e)
-                        }
+                    val user = FirebaseAuth.getInstance().currentUser
+                    val uid = user?.uid
+                    uid?.let {
+                        db.collection("users")
+                            .document(it)
+                            .collection("foods")
+                            .add(data)
+                            .addOnSuccessListener { documentReference ->
+                                Log.d(TAG, "DocumentSnapshot written with ID: ${documentReference.id}")
+                            }
+                            .addOnFailureListener { e ->
+                                Log.w(TAG, "Error adding document", e)
+                            }
+                    }
                     //val i = Intent().putExtras(b)
                     //setResult(RESULT_OK,i)
                     finish()

@@ -142,11 +142,15 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        listenToFirestoreChanges()
+        val user = FirebaseAuth.getInstance().currentUser
+        user?.let {
+            listenToFirestoreChanges(it.uid)
+        }
 
-
-
-
+    }
+    override fun onPause() {
+        super.onPause()
+        stopFirestoreListener()
     }
 
     /*
@@ -168,9 +172,11 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "讀取失敗", Toast.LENGTH_SHORT).show()
             }
     }*/
-    private fun listenToFirestoreChanges() {
-
-        listenerRegistration =db.collection("foods")
+    private fun listenToFirestoreChanges(uid: String) {
+        if (listenerRegistration != null) return
+        listenerRegistration =db.collection("users")
+            .document(uid)
+            .collection("foods")
             .addSnapshotListener { snapshot, e ->
                 if (e != null) {
                     Toast.makeText(this, "監聽失敗: ${e.message}", Toast.LENGTH_SHORT).show()

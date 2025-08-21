@@ -92,6 +92,10 @@ class MainActivity : AppCompatActivity() {
 
         bottomNav.setOnItemSelectedListener { item ->
             when (item.itemId) {
+                R.id.nav_sidepad -> {
+                    drawerLayout.openDrawer(GravityCompat.START)
+                    true
+                }
                 R.id.nav_home -> {
                     Toast.makeText(this, "這是一個提示訊息，首頁", Toast.LENGTH_SHORT).show()
                     true

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/nav_scan"
-        android:icon="@drawable/barcode_scan"
-        android:title="掃描" />
+        android:id="@+id/nav_close"
+        android:icon="@drawable/close_thick"
+        android:title="@string/cancel" />
     <item
         android:id="@+id/nav_check"
         android:icon="@drawable/baseline_check_24"

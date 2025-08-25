@@ -31,6 +31,7 @@ import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
+import com.google.firebase.firestore.Query
 
 class MainActivity : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
@@ -181,6 +182,7 @@ class MainActivity : AppCompatActivity() {
         listenerRegistration =db.collection("users")
             .document(uid)
             .collection("foods")
+            .orderBy("endDate", Query.Direction.ASCENDING)
             .addSnapshotListener { snapshot, e ->
                 if (e != null) {
                     Toast.makeText(this, "監聽失敗: ${e.message}", Toast.LENGTH_SHORT).show()

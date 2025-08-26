@@ -38,14 +38,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="品牌"
-            android:textColor="#555"
+            android:textColor="@color/normal_black"
             android:textSize="16sp" />
         <TextView
             android:id="@+id/tvEndDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="保存期限"
-            android:textColor="#777"
+            android:textColor="@color/normal_black"
             android:textSize="18sp" />
 
         <TextView

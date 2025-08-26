@@ -3,9 +3,9 @@
     <item
         android:id="@+id/nav_relog"
         android:icon="@drawable/swap_horizontal"
-        android:title="切換帳號" />
+        android:title="@string/reLog" />
     <item
         android:id="@+id/nav_settings"
         android:icon="@drawable/cog"
-        android:title="設定" />
+        android:title="@string/setting" />
 </menu>

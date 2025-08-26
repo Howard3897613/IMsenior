@@ -19,4 +19,8 @@
 
     <!-- Your original color from the item_food.xml context -->
     <color name="y">#FFFFFF</color>
+    <color name="blood_red">#FF0000</color>
+    <color name="expired_red">#E53935</color> <!-- 柔一點的紅 -->
+    <color name="warning_orange">#FB8C00</color> <!-- 黃橘色，比黃可讀性好 -->
+    <color name="normal_black">#212121</color> <!-- 深灰，比純黑柔和 -->
 </resources>

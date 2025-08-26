@@ -3,5 +3,39 @@
     <string name="options">選項</string>
     <string name="cancel">取消</string>
     <string name="comfirm">確認</string>
+    <!-- EditText 提示文字 -->
+    <string name="hint_product_name">請輸入產品名稱</string>
+    <string name="hint_end_date">例如：20250501(數字)</string>
+    <string name="hint_barcode">請輸入barcode</string>
+    <string name="hint_brand_name">請輸入品牌名稱</string>
+    <string name="hint_quantity">輸入單位，例：100g</string>
+
+    <!-- TextView 標籤 -->
+    <string name="label_product_name">產品名稱</string>
+    <string name="label_end_date">有效日期</string>
+    <string name="label_brand_name">品牌名稱</string>
+
+    <!-- RadioButton -->
+    <string name="category_food">食物</string>
+    <string name="category_ingredient">食材</string>
+
+    <string name="add">新增</string>
+
+    <string name="scan">掃描</string>
+
+    <string name="recipe">食譜</string>
+
+    <string name="HP">首頁</string>
+
+    <string name="reLog">切換帳號</string>
+    <string name="setting">設定</string>
+
+    <string name="intro">說明</string>
+    <string name="about">關於</string>
+
+    <string name="click_HP">您當前已在該頁面</string>
+
+    <string name="greeting_user">哈囉，%s！</string>
+    <string name="anonymous_user">匿名使用者</string>
 
 </resources>

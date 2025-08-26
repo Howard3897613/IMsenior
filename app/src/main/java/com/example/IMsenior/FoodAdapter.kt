@@ -14,6 +14,9 @@ import android.content.Intent
 import android.widget.ImageButton
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
+import java.text.SimpleDateFormat
+import java.util.*
+import androidx.core.content.ContextCompat
 
 class FoodAdapter(
     private val foodList: List<Food>,
@@ -45,6 +48,32 @@ class FoodAdapter(
         holder.createDate.text = food.createDate
         holder.endDate.text = food.endDate.toString()
         holder.quantity.text = food.quantityUnit
+
+        // ========= 新增日期判斷 =========
+        val sdf = SimpleDateFormat("yyyyMMdd", Locale.getDefault())
+
+// 今天日期
+        val todayInt = sdf.format(Date()).toInt()
+
+// 一週後
+        val calendar = Calendar.getInstance()
+        calendar.add(Calendar.DAY_OF_YEAR, 7)
+        val oneWeekLaterInt = sdf.format(calendar.time).toInt()
+
+// 判斷 food.endDate
+        val context = holder.itemView.context
+        when {
+            food.endDate < todayInt -> holder.name.setTextColor(
+                ContextCompat.getColor(context, R.color.blood_red)
+            )
+            food.endDate <= oneWeekLaterInt -> holder.name.setTextColor(
+                ContextCompat.getColor(context, R.color.warning_orange)
+            )
+            else -> holder.name.setTextColor(
+                ContextCompat.getColor(context, R.color.normal_black)
+            )
+        }
+        // ========= 日期判斷結束 =========
 
         holder.btnClick.setOnClickListener {
             Toast.makeText(context, "你點了 ${food.id}", Toast.LENGTH_SHORT).show()

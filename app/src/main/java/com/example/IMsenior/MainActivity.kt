@@ -98,7 +98,7 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.nav_home -> {
-                    Toast.makeText(this, "這是一個提示訊息，首頁", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.click_HP), Toast.LENGTH_SHORT).show()
                     true
                 }
                 R.id.nav_add -> {
@@ -120,8 +120,10 @@ class MainActivity : AppCompatActivity() {
         // 動態設定 Header 文字
         val headerView = navView.getHeaderView(0)
         val headerText = headerView.findViewById<TextView>(R.id.header_text)
-        val userName = user?.displayName ?: "匿名使用者"
-        headerText.text = "哈囉，$userName！"
+        val userName = user?.displayName ?: getString(R.string.anonymous_user)
+        headerText.text = getString(R.string.greeting_user, userName)
+
+
         // 處理 Menu 點擊事件
         navView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {

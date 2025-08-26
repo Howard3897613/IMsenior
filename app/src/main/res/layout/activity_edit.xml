@@ -14,7 +14,7 @@
         android:layout_height="48dp"
         android:layout_marginTop="4dp"
         android:ems="10"
-        android:hint="請輸入產品名稱"
+        android:hint="@string/hint_product_name"
         android:inputType="text"
         android:text=""
         app:layout_constraintStart_toStartOf="@+id/Product"
@@ -26,7 +26,7 @@
         android:layout_height="55dp"
         android:layout_marginTop="12dp"
         android:ems="10"
-        android:hint="例如：20250501(數字)"
+        android:hint="@string/hint_end_date"
         android:inputType="text"
         android:text=""
         app:layout_constraintStart_toStartOf="@+id/endate"
@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
         android:layout_marginTop="56dp"
-        android:text="產品名稱"
+        android:text="@string/label_product_name"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -47,7 +47,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="有效日期"
+        android:text="@string/label_end_date"
         app:layout_constraintStart_toStartOf="@+id/editProduct"
         app:layout_constraintTop_toBottomOf="@+id/editProduct" />
 
@@ -65,14 +65,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="食物" />
+            android:text="@string/category_food" />
 
         <RadioButton
             android:id="@+id/source"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="食材" />
+            android:text="@string/category_ingredient" />
     </RadioGroup>
 
 
@@ -82,7 +82,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
-        android:text="品牌名稱"
+        android:text="@string/label_brand_name"
         app:layout_constraintStart_toStartOf="@+id/editenddate"
         app:layout_constraintTop_toBottomOf="@+id/editenddate" />
 
@@ -91,7 +91,7 @@
         android:layout_width="286dp"
         android:layout_height="56dp"
         android:ems="10"
-        android:hint="請輸入品牌名稱"
+        android:hint="@string/hint_brand_name"
         android:inputType="text"
         app:layout_constraintStart_toStartOf="@+id/Brand"
         app:layout_constraintTop_toBottomOf="@+id/Brand" />
@@ -102,7 +102,7 @@
         android:layout_height="60dp"
         android:ems="10"
         android:inputType="text"
-        android:hint="輸入單位，例：100g"
+        android:hint="@string/hint_quantity"
         app:layout_constraintStart_toStartOf="@+id/category"
         app:layout_constraintTop_toBottomOf="@+id/category" />
 

@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="產品名稱"
-            android:textColor="#333"
+            android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold" />
 

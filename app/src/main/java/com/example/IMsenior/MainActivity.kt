@@ -137,8 +137,21 @@ class MainActivity : AppCompatActivity() {
                             finish()
                         }
                 }
-                R.id.nav_settings -> {
-                    Toast.makeText(this, "你點了設定", Toast.LENGTH_SHORT).show()
+                R.id.nav_about -> {
+                    val dialog = InfoDialogFragment.newInstance(
+                        getString(R.string.about_title),
+                        getString(R.string.about_text)
+                    )
+                    dialog.show(supportFragmentManager, "AboutDialog")
+                    true
+                }
+                R.id.nav_help -> {
+                    val dialog = InfoDialogFragment.newInstance(
+                        "使用說明",
+                        getString(R.string.help_text)
+                    )
+                    dialog.show(supportFragmentManager, "HelpDialog")
+                    true
                 }
             }
             drawerLayout.closeDrawer(GravityCompat.START)

@@ -30,12 +30,16 @@
     <string name="reLog">切換帳號</string>
     <string name="setting">設定</string>
 
-    <string name="intro">說明</string>
-    <string name="about">關於</string>
+    <string name="help_title">說明</string>
+    <string name="about_title">關於</string>
 
     <string name="click_HP">您當前已在該頁面</string>
 
     <string name="greeting_user">哈囉，%s！</string>
     <string name="anonymous_user">匿名使用者</string>
+
+
+    <string name="about_text">這是關於本 APP 的詳細說明...</string>
+    <string name="help_text">這是使用說明，教你怎麼操作...</string>
 
 </resources>

@@ -108,7 +108,7 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.nav_recipe -> {
-                    Toast.makeText(this, "菜單", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this, RecipeActivity::class.java))
                     true
                 }
                 else -> false

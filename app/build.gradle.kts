@@ -70,6 +70,8 @@ dependencies {
     implementation("com.google.firebase:firebase-auth-ktx")
     implementation("com.firebaseui:firebase-ui-auth:9.0.0")
 
+    //AI logic
+    implementation("com.google.firebase:firebase-ai:17.2.0")
 
 
 

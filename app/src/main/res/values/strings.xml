@@ -41,5 +41,12 @@
 
     <string name="about_text">這是關於本 APP 的詳細說明...</string>
     <string name="help_text">這是使用說明，教你怎麼操作...</string>
+    <string name="send">送出</string>
+    <string name="addonAI">輸入您的要求(可選)</string>
+    <string name="back">返回</string>
+    <string name="copy">複製</string>
+    <string name="copyied">已經複製到剪貼簿</string>
+    <string name="uncopied">複製到剪貼簿失敗</string>
+    <string name="returnAI">以繁體中文回應</string>
 
 </resources>

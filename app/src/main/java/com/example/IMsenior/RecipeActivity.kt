@@ -137,10 +137,10 @@ class RecipeActivity : AppCompatActivity() {
             $promt
             使用者問題: $userInput
 
-            以下是目前冰箱裡的食材資料:
+            以下是目前使用者擁有的食材資料:
             $dataString
 
-            請根據食材資料來生成一份具有詳細作法的食譜。
+            請參考食材資料來生成一份具有詳細作法的食譜。請無視那些你認為不可用的項目。
         """.trimIndent()
     }
 }

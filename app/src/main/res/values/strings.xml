@@ -39,8 +39,21 @@
     <string name="anonymous_user">匿名使用者</string>
 
 
-    <string name="about_text">這是關於本 APP 的詳細說明...</string>
-    <string name="help_text">這是使用說明，教你怎麼操作...</string>
+    <string name="about_text">
+    此APP是淡江大學資管系進行開發的畢業專題，專題題目為”PantryMate食品櫃好夥伴”。\n
+    從分析使用者需求，再進行功能設計與介面規劃，並透過程式開發不斷測試與改進。\n
+    此APP仍在開發中，可能會遇到設計不完善的地方，我們會再進行反覆調整。\n
+    APP開發人員名單：\n
+    陳庭浩 系統主開發、後端主控、後端資安、AI食譜\n
+    林峰彬 到期通知提醒功能\n
+    王鼎元 關於、說明
+</string>
+
+    <string name="help_text">
+1.在新增頁面左下有個掃描鍵，進入掃描頁面後可以掃描食材的barcode，將食材數據存入資料庫中。\n
+2.APP裡的AI食譜僅基於資料庫裡的食材，不會根據食物去做考量。\n
+3.在使用此APP時，資料庫會以監聽器時現多端實時同步資料，進行新增、刪除、修改等。
+</string>
     <string name="send">送出</string>
     <string name="addonAI">輸入您的要求(可選)</string>
     <string name="back">返回</string>

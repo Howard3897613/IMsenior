@@ -147,7 +147,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.nav_help -> {
                     val dialog = InfoDialogFragment.newInstance(
-                        "使用說明",
+                        getString(R.string.help_title),
                         getString(R.string.help_text)
                     )
                     dialog.show(supportFragmentManager, "HelpDialog")

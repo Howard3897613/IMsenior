@@ -44,7 +44,11 @@ class FoodAdapter(
         val db = Firebase.firestore
         holder.name.text = food.productName
         holder.brand.text = food.brand
-        holder.category.text = if (food.category == 1) "食材" else "食物"
+        holder.category.text = if (food.category == 1) {
+            holder.itemView.context.getString(R.string.category_ingredient)
+        } else {
+            holder.itemView.context.getString(R.string.category_food)
+        }
         holder.createDate.text = food.createDate
         holder.endDate.text = food.endDate.toString()
         holder.quantity.text = food.quantityUnit

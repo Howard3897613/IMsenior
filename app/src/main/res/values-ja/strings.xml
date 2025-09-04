@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">IMsenior</string>
+    <string name="options">オプション</string>
+    <string name="cancel">キャンセル</string>
+    <string name="comfirm">確認</string>
+
+    <!-- EditText 提示文字 -->
+    <string name="hint_product_name">製品名を入力してください</string>
+    <string name="hint_end_date">例：20250501（数字）</string>
+    <string name="hint_barcode">バーコードを入力してください</string>
+    <string name="hint_brand_name">ブランド名を入力してください</string>
+    <string name="hint_quantity">単位を入力してください、例：100g</string>
+
+    <!-- TextView 標籤 -->
+    <string name="label_product_name">製品名</string>
+    <string name="label_end_date">有効期限</string>
+    <string name="label_brand_name">ブランド名</string>
+
+    <!-- RadioButton -->
+    <string name="category_food">食品</string>
+    <string name="category_ingredient">食材</string>
+
+    <string name="add">追加</string>
+    <string name="scan">スキャン</string>
+    <string name="recipe">レシピ</string>
+    <string name="HP">ホーム</string>
+    <string name="reLog">アカウントを切り替える</string>
+    <string name="setting">設定</string>
+    <string name="help_title">ヘルプ</string>
+    <string name="about_title">概要</string>
+    <string name="click_HP">現在このページにいます</string>
+
+    <string name="greeting_user">こんにちは、%s！</string>
+    <string name="anonymous_user">匿名ユーザー</string>
+
+    <string name="about_text">
+    このAPPは淡江大学情報管理学科の卒業プロジェクトとして開発されています。題目は「PantryMate 食品棚のパートナー」です。\n
+    ユーザーのニーズを分析し、機能設計とUI計画を行い、プログラム開発を通じてテストと改善を繰り返しました。\n
+    このAPPはまだ開発中で、不完全な設計があるかもしれません。今後も調整を続けます。\n
+    APP開発メンバー：\n
+    陳庭浩　システムメイン開発、バックエンド管理、セキュリティ、AIレシピ\n
+    林峰彬　有効期限通知機能\n
+    王鼎元　概要、ヘルプ
+</string>
+
+    <string name="help_text">
+1. 新規追加ページの左下にスキャンボタンがあります。スキャンページに入ると食材のバーコードを読み取り、データベースに保存できます。\n
+2. APPのAIレシピはデータベース内の食材のみに基づいており、調理済みの食品は考慮されません。\n
+3. このAPPを使用するとき、データベースはリスナーを通じて複数端末でリアルタイムに同期され、新規追加、削除、編集が可能です。
+</string>
+
+    <string name="send">送信</string>
+    <string name="addonAI">リクエストを入力してください（任意）</string>
+    <string name="back">戻る</string>
+    <string name="copy">コピー</string>
+    <string name="copyied">クリップボードにコピーしました</string>
+    <string name="uncopied">クリップボードへのコピーに失敗しました</string>
+    <string name="returnAI">日本語で応答してください</string>
+</resources>

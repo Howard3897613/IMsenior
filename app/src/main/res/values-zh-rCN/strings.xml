@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">IMsenior</string>
+    <string name="options">选项</string>
+    <string name="cancel">取消</string>
+    <string name="comfirm">确认</string>
+
+    <!-- EditText Hints -->
+    <string name="hint_product_name">输入商品名称</string>
+    <string name="hint_end_date">例如: 20250501（仅限数字）</string>
+    <string name="hint_barcode">输入条码</string>
+    <string name="hint_brand_name">输入品牌名称</string>
+    <string name="hint_quantity">输入单位，例如 100g</string>
+
+    <!-- TextView Labels -->
+    <string name="label_product_name">商品名称</string>
+    <string name="label_end_date">保质期</string>
+    <string name="label_brand_name">品牌名称</string>
+
+    <!-- RadioButton -->
+    <string name="category_food">食物</string>
+    <string name="category_ingredient">食材</string>
+
+    <string name="add">新增</string>
+
+    <string name="scan">扫描</string>
+
+    <string name="recipe">食谱</string>
+
+    <string name="HP">首页</string>
+
+    <string name="reLog">切换账号</string>
+    <string name="setting">设置</string>
+
+    <string name="help_title">帮助</string>
+    <string name="about_title">关于</string>
+
+    <string name="click_HP">你已经在此页面</string>
+
+    <string name="greeting_user">哈喽，%s！</string>
+    <string name="anonymous_user">匿名用户</string>
+
+    <string name="about_text">
+此APP是淡江大学资管系进行开发的毕业专题，专题题目为“PantryMate食品柜好伙伴”。\n
+从分析用户需求，再进行功能设计与界面规划，并通过程序开发不断测试与改进。\n
+此APP仍在开发中，可能会遇到设计不完善的地方，我们会再进行反复调整。\n
+APP开发人员名单：\n
+陳庭浩 系统主开发、后端主控、后端资安、AI食谱\n
+林峰彬 到期提醒功能\n
+王鼎元 关于、说明
+</string>
+
+    <string name="help_text">
+1. 在新增页面，点击左下角的扫描按钮进入扫描页面，可以扫描食材的条码并保存至数据库。\n
+2. AI食谱功能只会根据数据库中的食材生成食谱，不会考虑已经完成的食物。\n
+3. 使用APP时，数据库通过监听器实时同步数据，支持新增、删除与更新操作。
+</string>
+
+    <string name="send">发送</string>
+    <string name="addonAI">输入你的请求（可选）</string>
+    <string name="back">返回</string>
+    <string name="copy">复制</string>
+    <string name="copyied">已复制到剪贴板</string>
+    <string name="uncopied">复制失败</string>
+
+    <!-- 注意：這裡隨語言切換 -->
+    <string name="returnAI">以简体中文回应</string>
+</resources>

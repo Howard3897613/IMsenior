@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">IMsenior</string>
+    <string name="options">Options</string>
+    <string name="cancel">Cancel</string>
+    <string name="comfirm">Confirm</string>
+
+    <!-- EditText Hints -->
+    <string name="hint_product_name">Enter product name</string>
+    <string name="hint_end_date">Example: 20250501 (numbers only)</string>
+    <string name="hint_barcode">Enter barcode</string>
+    <string name="hint_brand_name">Enter brand name</string>
+    <string name="hint_quantity">Enter unit, e.g. 100g</string>
+
+    <!-- TextView Labels -->
+    <string name="label_product_name">Product Name</string>
+    <string name="label_end_date">Expiration Date</string>
+    <string name="label_brand_name">Brand Name</string>
+
+    <!-- RadioButton -->
+    <string name="category_food">Food</string>
+    <string name="category_ingredient">Ingredient</string>
+
+    <string name="add">Add</string>
+
+    <string name="scan">Scan</string>
+
+    <string name="recipe">Recipe</string>
+
+    <string name="HP">Home</string>
+
+    <string name="reLog">Switch Account</string>
+    <string name="setting">Settings</string>
+
+    <string name="help_title">Help</string>
+    <string name="about_title">About</string>
+
+    <string name="click_HP">You are already on this page</string>
+
+    <string name="greeting_user">Hello, %s!</string>
+    <string name="anonymous_user">Anonymous User</string>
+
+    <string name="about_text">
+    This app is a graduation project developed by the Department of Management Information Systems, Tamkang University. The project title is "PantryMate – Your Pantry Companion".\n
+    From analyzing user needs, designing functions and UI, to programming with continuous testing and improvements.\n
+    The app is still under development, so you may encounter incomplete designs, which we will continue to refine.\n
+    Development team:\n
+    陳庭浩 – Lead developer, backend architecture, backend security, AI recipes\n
+    林峰彬 – Expiration notification feature\n
+    王鼎元 – About page, Help page
+</string>
+
+    <string name="help_text">
+1. On the Add page, tap the Scan button at the bottom left to open the scan page. You can scan the barcode of ingredients to save their data into the database.\n
+2. The AI recipe feature only generates recipes based on ingredients in the database. It does not take finished food into account.\n
+3. When using this app, the database uses listeners to synchronize data in real time across multiple devices, supporting add, delete, and update operations.
+</string>
+
+    <string name="send">Send</string>
+    <string name="addonAI">Enter your request (optional)</string>
+    <string name="back">Back</string>
+    <string name="copy">Copy</string>
+    <string name="copyied">Copied to clipboard</string>
+    <string name="uncopied">Failed to copy to clipboard</string>
+
+    <!-- 注意：這裡隨語言切換 -->
+    <string name="returnAI">Respond in English</string>
+</resources>

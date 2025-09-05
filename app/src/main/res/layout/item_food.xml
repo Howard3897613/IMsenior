@@ -1,17 +1,19 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    card_view:cardCornerRadius="12dp"
-    card_view:cardElevation="6dp"
-    card_view:cardBackgroundColor="@color/colorPaleYellow"
-    style="?attr/materialCardViewFilledStyle">
+    android:layout_marginStart="12dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginEnd="12dp"
+    android:layout_marginBottom="8dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="4dp"
+    app:cardBackgroundColor="?attr/colorSurfaceContainerHigh">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="16dp">
 
@@ -19,88 +21,163 @@
             android:id="@+id/tvName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="產品名稱"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <com.google.android.material.divider.MaterialDivider
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:dividerColor="@color/colorPrimary"
-            app:dividerThickness="2dp"
-            app:dividerInsetStart="5dp"
-            app:dividerInsetEnd="5dp"/>
-
+            tools:text="美味巧克力大餅乾"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            android:textColor="?attr/colorOnSurface"
+            android:textStyle="bold"
+            android:layout_marginBottom="4dp"/>
 
         <TextView
             android:id="@+id/tvBrand"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="品牌"
-            android:textColor="@color/normal_black"
-            android:textSize="16sp" />
-        <TextView
-            android:id="@+id/tvEndDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="保存期限"
-            android:textColor="@color/normal_black"
-            android:textSize="18sp" />
+            tools:text="超級無敵大品牌"
+            android:textAppearance="?attr/textAppearanceSubtitle1"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            android:layout_marginBottom="2dp"/>
 
         <TextView
             android:id="@+id/tvCategory"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="類別"
-            android:textColor="#555"
-            android:textSize="16sp" />
+            tools:text="休閒零食"
+            android:textAppearance="?attr/textAppearanceBody2"
+            android:textColor="?attr/colorOnSecondaryContainer"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:layout_marginBottom="10dp"/>
 
-
-
-
-
-        <TextView
-            android:id="@+id/tvQuantity"
+        <com.google.android.material.divider.MaterialDivider
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="數量單位"
-            android:textColor="#777"
-            android:textSize="14sp" />
-        <TextView
-            android:id="@+id/tvCreateDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="建立日期"
-            android:textColor="#777"
-            android:textSize="14sp" />
+            android:layout_height="1dp"
+            app:dividerColor="?attr/colorOutlineVariant"
+            android:layout_marginBottom="12dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:gravity="end"
-            android:layout_marginTop="8dp">
+            android:gravity="center_vertical"
+            android:layout_marginBottom="8dp">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_event_available"
+                app:tint="?attr/colorPrimary"
+                android:layout_marginEnd="8dp"
+                android:contentDescription="到期日圖示"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/endateItem"
+                android:textAppearance="?attr/textAppearanceLabelLarge"
+                android:textColor="?attr/colorOnSurfaceVariant"
+                android:layout_marginEnd="4dp"/>
+
+            <TextView
+                android:id="@+id/tvEndDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="2025-08-22"
+                android:textAppearance="?attr/textAppearanceBodyLarge"
+                android:textColor="?attr/colorError"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="8dp">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_package_24"
+                app:tint="?attr/colorPrimary"
+                android:layout_marginEnd="8dp"
+                android:contentDescription="數量圖示"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/amount"
+                android:textAppearance="?attr/textAppearanceLabelLarge"
+                android:textColor="?attr/colorOnSurfaceVariant"
+                android:layout_marginEnd="4dp"/>
+
+            <TextView
+                android:id="@+id/tvQuantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="3 包"
+                android:textAppearance="?attr/textAppearanceBodyLarge"
+                android:textColor="?attr/colorOnSurface"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="16dp">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_today_calendar"
+                app:tint="?attr/colorOnSurfaceVariant"
+                android:layout_marginEnd="8dp"
+                android:contentDescription="建立日期圖示"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/addDate"
+                android:textAppearance="?attr/textAppearanceLabelLarge"
+                android:textColor="?attr/colorOnSurfaceVariant"
+                android:layout_marginEnd="4dp"/>
+
+            <TextView
+                android:id="@+id/tvCreateDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="2023-10-01"
+                android:textAppearance="?attr/textAppearanceBodyMedium"
+                android:textColor="?attr/colorOnSurfaceVariant"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="end">
 
             <ImageButton
                 android:id="@+id/btnEdit"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:src="@drawable/pencil"
                 android:contentDescription="編輯"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:layout_marginStart="8dp"
-                app:tint="@color/colorPrimary"/>
+                android:padding="8dp"
+                app:tint="?attr/colorPrimary"/>
 
             <ImageButton
                 android:id="@+id/btnClick"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:src="@drawable/close_thick"
+                android:contentDescription="刪除"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:padding="8dp"
                 android:layout_marginStart="8dp"
-                app:tint="@android:color/holo_red_dark"/>
+                app:tint="?attr/colorError"/>
         </LinearLayout>
-
-
     </LinearLayout>
 </androidx.cardview.widget.CardView>

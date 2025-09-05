@@ -57,4 +57,7 @@
     <string name="copyied">クリップボードにコピーしました</string>
     <string name="uncopied">クリップボードへのコピーに失敗しました</string>
     <string name="returnAI">日本語で応答してください</string>
+    <string name="amount">数量：</string>
+    <string name="addDate">作成日：</string>
+    <string name="endateItem">有効期限：</string>
 </resources>

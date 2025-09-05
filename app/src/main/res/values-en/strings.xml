@@ -65,4 +65,7 @@
 
     <!-- 注意：這裡隨語言切換 -->
     <string name="returnAI">Respond in English</string>
+    <string name="amount">"Quantity: "</string>
+    <string name="addDate">"Created Date: "</string>
+    <string name="endateItem">"Expiration Date: "</string>
 </resources>

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import androidx.appcompat.widget.SearchView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import okhttp3.OkHttpClient
@@ -85,7 +86,7 @@ class MainActivity : AppCompatActivity() {
 
         foodList = ArrayList()
 
-        foodAdapter = FoodAdapter(foodList, this)
+        foodAdapter = FoodAdapter(this)
         recyclerView.adapter = foodAdapter
 
         //listenToFirestoreChanges()
@@ -157,6 +158,19 @@ class MainActivity : AppCompatActivity() {
             drawerLayout.closeDrawer(GravityCompat.START)
             true
         }
+        val searchView = findViewById<SearchView>(R.id.searchView)
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                foodAdapter.filter.filter(query)
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                foodAdapter.filter.filter(newText)
+                return true
+            }
+        })
 
     }
 
@@ -213,7 +227,8 @@ class MainActivity : AppCompatActivity() {
                             foodList.add(foodWithId)
                         }
                     }
-                    foodAdapter.notifyDataSetChanged()
+                    foodAdapter.updateData(foodList)
+                    //foodAdapter.notifyDataSetChanged()
                 } else {
                     Toast.makeText(this, "無資料", Toast.LENGTH_SHORT).show()
                 }

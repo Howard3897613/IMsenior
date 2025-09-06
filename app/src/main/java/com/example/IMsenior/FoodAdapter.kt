@@ -1,27 +1,42 @@
 package com.example.IMsenior
 
-import android.widget.Button
-import android.widget.TextView
-import android.widget.Toast
-import androidx.recyclerview.widget.RecyclerView
+import android.content.Context
+import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.content.Context
-import android.util.Log
-import android.content.ContentValues.TAG
-import android.content.Intent
+import android.widget.Filter
+import android.widget.Filterable
 import android.widget.ImageButton
+import android.widget.TextView
+import android.widget.Toast
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
 import java.text.SimpleDateFormat
 import java.util.*
-import androidx.core.content.ContextCompat
+import android.content.ContentValues.TAG
+
 
 class FoodAdapter(
-    private val foodList: List<Food>,
+    //private val originalList: ArrayList<Food>,
+    //private val foodList: List<Food>,
     private val context: Context
-) : RecyclerView.Adapter<FoodAdapter.FoodViewHolder>() {
+) : RecyclerView.Adapter<FoodAdapter.FoodViewHolder>(), Filterable {
+    private val originalList: ArrayList<Food> = ArrayList()
+    private var filteredList: ArrayList<Food> = ArrayList(originalList)
+
+    //private val filteredList: ArrayList<Food> = ArrayList()
+
+    fun updateData(newList: List<Food>) {
+        originalList.clear()
+        originalList.addAll(newList)
+        filteredList.clear()
+        filteredList.addAll(newList)
+        notifyDataSetChanged()
+    }
 
     inner class FoodViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val name: TextView = itemView.findViewById(R.id.tvName)
@@ -40,7 +55,7 @@ class FoodAdapter(
     }
 
     override fun onBindViewHolder(holder: FoodViewHolder, position: Int) {
-        val food = foodList[position]
+        val food = filteredList[position]
         val db = Firebase.firestore
         holder.name.text = food.productName
         holder.brand.text = food.brand
@@ -101,5 +116,33 @@ class FoodAdapter(
         }
     }
 
-    override fun getItemCount(): Int = foodList.size
+    override fun getItemCount(): Int = filteredList.size
+
+    override fun getFilter(): Filter {
+        return object : Filter() {
+            override fun performFiltering(constraint: CharSequence?): FilterResults {
+                val query = constraint?.toString()?.lowercase()?.trim()
+                val results = FilterResults()
+
+                results.values = if (query.isNullOrEmpty()) {
+                    originalList
+                } else {
+                    originalList.filter {
+                        it.productName.lowercase().contains(query) ||
+                                it.brand.lowercase().contains(query)
+                    }
+                }
+
+                return results
+            }
+
+            @Suppress("UNCHECKED_CAST")
+            override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
+                filteredList = ArrayList(results?.values as List<Food>)
+                notifyDataSetChanged()
+            }
+        }
+    }
+
 }
+

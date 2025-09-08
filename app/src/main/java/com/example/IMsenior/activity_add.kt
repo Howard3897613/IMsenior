@@ -13,6 +13,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.bumptech.glide.Glide
+
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
@@ -64,12 +66,19 @@ class activity_add : AppCompatActivity() {
         val dateIcon = findViewById<ImageView>(R.id.dateIcon)
         comfirm_Barcode.setOnClickListener {
             val testBarcode = findViewById<EditText>(R.id.EtBarcode).text.toString()
-            apiHelper.fetchFoodData(testBarcode) { productName, Brand, Quantity ->
+            apiHelper.fetchFoodData(testBarcode) { productName, Brand, Quantity, imageUrl ->
                 runOnUiThread {
-
                     ProductEd.setText(productName)
                     brandEd.setText(Brand)
                     quantity.setText(Quantity)
+
+                    // 顯示圖片，增加 placeholder 和錯誤圖片
+                    val foodImageView = findViewById<ImageView>(R.id.ivFoodImage)
+                    Glide.with(this)
+                        .load(imageUrl)
+                        .placeholder(R.drawable.placeholder_image) // 下載中或空白時顯示
+                        .error(R.drawable.error_image)             // 下載失敗時顯示
+                        .into(foodImageView)
                 }
             }
         }
@@ -192,16 +201,17 @@ class activity_add : AppCompatActivity() {
 class ApiHelper {
     private val client = OkHttpClient()
 
-    fun fetchFoodData(barcode: String, callback: (String, String,String) -> Unit) {
+    // callback 改成 4 個參數：產品名稱、品牌、數量、圖片 URL
+    fun fetchFoodData(barcode: String, callback: (String, String, String, String) -> Unit) {
         val url = "https://world.openfoodfacts.org/api/v2/product/$barcode.json"
         val request = Request.Builder().url(url).build()
 
-        client.newCall(request).enqueue(object : Callback {
-            override fun onFailure(call: Call, e: IOException) {
+        client.newCall(request).enqueue(object : okhttp3.Callback {
+            override fun onFailure(call: okhttp3.Call, e: IOException) {
                 Log.e("API_ERROR", "無法取得資料: ${e.message}")
             }
 
-            override fun onResponse(call: Call, response: Response) {
+            override fun onResponse(call: okhttp3.Call, response: okhttp3.Response) {
                 val jsonResponse = response.body?.string()
                 if (jsonResponse != null) {
                     try {
@@ -210,9 +220,10 @@ class ApiHelper {
                         val productName = product?.optString("product_name", "未知") ?: "未知"
                         val Brand = product?.optString("brands", "未知") ?: "未知"
                         val quantityUnit = product?.optString("serving_size", "未知") ?: "未知"
+                        val imageUrl = product?.optString("image_url", "") ?: ""  // 新增圖片 URL
 
-                        // 回傳結果
-                        callback(productName, Brand ,quantityUnit)
+                        // 回傳結果（產品名稱、品牌、數量、圖片 URL）
+                        callback(productName, Brand, quantityUnit, imageUrl)
                     } catch (e: Exception) {
                         Log.e("JSON_ERROR", "解析失敗: ${e.message}")
                     }
@@ -220,6 +231,5 @@ class ApiHelper {
             }
         })
     }
-
-
 }
+

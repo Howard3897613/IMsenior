@@ -13,60 +13,80 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!-- 主內容區，建議用 FrameLayout 方便切換 Fragment -->
-        <FrameLayout
-            android:id="@+id/container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@id/bottom_nav" />
-
-        <!-- 你原本的 UI（輸入框、按鈕、文字顯示）可以先放在 Fragment 裡，然後再塞進 container -->
-        <!-- 如果要偷懶，也可以直接塞 LinearLayout 在這邊 -->
-        <!-- 例如： -->
+        <!-- 用 LinearLayout 把回覆區、輸入區、底部導航排好 -->
         <LinearLayout
-            android:id="@+id/linearContent"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/inputPrompt"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:hint="@string/addonAI" />
-
-            <Button
-                android:id="@+id/btnSend"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="12dp"
-                android:text="@string/send" />
-
-            <ScrollView
+            <!-- AI 回覆區 (佔滿上方) -->
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:fillViewport="true">
+                android:layout_margin="12dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="4dp">
 
-                <TextView
-                    android:id="@+id/tvResponse"
+                <ScrollView
                     android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:id="@+id/tvResponse"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="AI 回覆會出現在這裡"
+                        android:textSize="16sp"
+                        android:lineSpacingExtra="4dp"/>
+                </ScrollView>
+            </androidx.cardview.widget.CardView>
+
+            <!-- 輸入區 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp"
+                android:gravity="center_vertical">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:paddingTop="16dp"
-                    android:text="AI 回覆會出現在這裡" />
-            </ScrollView>
+                    android:layout_weight="1"
+                    android:hint="@string/addonAI"
+                    app:boxCornerRadiusTopStart="12dp"
+                    app:boxCornerRadiusTopEnd="12dp"
+                    app:boxCornerRadiusBottomStart="12dp"
+                    app:boxCornerRadiusBottomEnd="12dp">
 
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/inputPrompt"
+                        android:layout_width="match_parent"
+                        android:background="@drawable/bg_edittext"
+                        android:layout_height="wrap_content"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnSend"
+                    style="@style/Widget.MaterialComponents.Button.Icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/send"
+                    app:cornerRadius="12dp"
+                    app:icon="@drawable/send"
+                    app:iconTint="@android:color/white"/>
+            </LinearLayout>
+
+            <!-- 底部導航欄 -->
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/bottom_nav"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:menu="@menu/bottom_recipe_menu"/>
         </LinearLayout>
-
-        <!-- 底部導航欄 -->
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottom_nav"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            app:menu="@menu/bottom_recipe_menu" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

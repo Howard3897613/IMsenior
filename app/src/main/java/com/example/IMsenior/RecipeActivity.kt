@@ -101,8 +101,7 @@ class RecipeActivity : AppCompatActivity() {
                 val foods = mutableListOf<String>()
                 for (doc in result) {
                     val name = doc.getString("productName") ?: "未知食材"
-                    val endDateInt = doc.getLong("endDate")?.toInt() ?: 0  // 先用 getLong 再轉成 Int
-                    val endDate = endDateInt.toString()  // 如果想要顯示在文字裡
+                    val endDate = doc.getString("endDate") ?: "未設定"  // 改用 getString
                     val quantity = doc.getString("quantityUnit") ?: "未設定數量"
                     foods.add("$name (保存期限: $endDate、數量: $quantity)")
                 }
@@ -114,6 +113,7 @@ class RecipeActivity : AppCompatActivity() {
                 tvResponse.text = "讀取 Firestore 失敗: ${e.message}"
             }
     }
+
     private fun askAI(prompt: String) {
         tvResponse.text = "AI 思考中..."
         lifecycleScope.launch {

@@ -18,6 +18,10 @@ import com.google.firebase.firestore.firestore
 import java.text.SimpleDateFormat
 import java.util.*
 import android.content.ContentValues.TAG
+import android.widget.ImageView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+
 
 
 class FoodAdapter(
@@ -47,6 +51,7 @@ class FoodAdapter(
         val quantity: TextView = itemView.findViewById(R.id.tvQuantity)
         val btnClick: ImageButton = itemView.findViewById(R.id.btnClick)
         val btnedit: ImageButton = itemView.findViewById(R.id.btnEdit)
+        val foodImage: ImageView = itemView.findViewById(R.id.ivFoodItem)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoodViewHolder {
@@ -67,6 +72,14 @@ class FoodAdapter(
         holder.createDate.text = food.createDate
         holder.endDate.text = food.endDate.toString()
         holder.quantity.text = food.quantityUnit
+
+        Glide.with(context)
+            .load(food.imageUrl) // 食物圖片 URL
+            //.placeholder(R.drawable.placeholder_image) // 載入中顯示的預設圖
+            .placeholder(R.drawable.loading)  // 指向 GIF
+            .error(R.drawable.empty_frame)             // 載入失敗顯示的圖片
+            .transform(RoundedCorners(16))             // 圓角 16px (可調整)
+            .into(holder.foodImage)
 
         // ========= 新增日期判斷 =========
         val sdf = SimpleDateFormat("yyyyMMdd", Locale.getDefault())

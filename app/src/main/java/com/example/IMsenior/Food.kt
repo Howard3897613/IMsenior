@@ -15,7 +15,8 @@ data class Food(
     val category: Int = 0, // Default value
     val createDate: String = "", // Default value
     val endDate: Int = 0, // Default value (consider if String is more appropriate if it's a date)
-    val quantityUnit: String = "" // Default value
+    val quantityUnit: String = "", // Default value
+    val imageUrl: String = ""   //  新增圖片 URL 欄位
 ) {
     // If you prefer not to add default values to the primary constructor,
     // or if some properties MUST be initialized via the primary constructor

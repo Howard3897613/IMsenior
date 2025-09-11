@@ -68,4 +68,5 @@
     <string name="amount">"Quantity: "</string>
     <string name="addDate">"Created Date: "</string>
     <string name="endateItem">"Expiration Date: "</string>
+    <string name="label_quantity">Weight/Unit</string>
 </resources>

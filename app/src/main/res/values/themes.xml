@@ -1,8 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+    <!-- Light / 預設主題 -->
     <style name="Base.Theme.IMsenior" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:windowBackground">@drawable/bg_fullscreen</item>
     </style>
 
     <style name="Theme.IMsenior" parent="Base.Theme.IMsenior" />

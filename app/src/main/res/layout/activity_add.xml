@@ -21,14 +21,16 @@
             android:layout_weight="1"
             android:layout_height="56dp"
             android:hint="@string/hint_barcode"
-            android:inputType="text" />
+            android:inputType="text"
+            android:background="@drawable/bg_edittext"/>
 
         <Button
             style="@style/Widget.Material3.Button.TonalButton"
             android:id="@+id/confirm_barcode"
             android:layout_width="wrap_content"
             android:layout_height="56dp"
-            android:text="@string/comfirm" />
+            android:text="@string/comfirm"
+            android:background="@drawable/bg_edittext"/>
     </LinearLayout>
 
     <!-- 類別選擇 (食材 / 食物) -->
@@ -46,7 +48,8 @@
             android:layout_height="wrap_content"
             android:text="@string/category_food"
             android:textSize="20sp"
-            android:padding="12dp" />
+            android:padding="12dp"
+            />
 
         <RadioButton
             android:id="@+id/source"
@@ -54,7 +57,8 @@
             android:layout_height="wrap_content"
             android:text="@string/category_ingredient"
             android:textSize="20sp"
-            android:padding="12dp" />
+            android:padding="12dp"
+            />
     </RadioGroup>
 
     <!-- 產品名稱 -->
@@ -63,6 +67,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:textStyle="bold"
         android:text="@string/label_product_name" />
 
     <EditText
@@ -70,7 +75,8 @@
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:hint="@string/hint_product_name"
-        android:inputType="text" />
+        android:inputType="text"
+        android:background="@drawable/bg_edittext"/>
 
     <!-- 保存期限 -->
     <TextView
@@ -78,6 +84,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:textStyle="bold"
         android:text="@string/label_end_date" />
 
     <LinearLayout
@@ -91,13 +98,14 @@
             android:layout_weight="1"
             android:layout_height="55dp"
             android:hint="@string/hint_end_date"
-            android:inputType="text" />
+            android:inputType="text"
+            android:background="@drawable/bg_edittext"/>
 
         <ImageView
             android:id="@+id/dateIcon"
             android:layout_width="55dp"
             android:layout_height="55dp"
-            android:src="@android:drawable/ic_menu_agenda" />
+            android:src="@android:drawable/ic_menu_agenda"/>
     </LinearLayout>
 
     <!-- 品牌名稱 -->
@@ -106,6 +114,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:textStyle="bold"
         android:text="@string/label_brand_name" />
 
     <EditText
@@ -113,7 +122,8 @@
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:hint="@string/hint_brand_name"
-        android:inputType="text" />
+        android:inputType="text"
+        android:background="@drawable/bg_edittext"/>
 
     <!-- 數量 -->
     <EditText
@@ -122,11 +132,8 @@
         android:layout_height="56dp"
         android:hint="@string/hint_quantity"
         android:inputType="text"
-        android:layout_marginTop="16dp" />
+        android:background="@drawable/bg_edittext"/>
 
-
-
-    <!-- 寫這裡 -->
     <!-- 食材圖片 -->
     <ImageView
         android:id="@+id/ivFoodImage"
@@ -135,11 +142,10 @@
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:scaleType="centerCrop"
+        android:background="@drawable/bg_edittext"
         android:contentDescription="食材圖片" />
 
-
     <!-- 空白空間，撐開剩餘空間 -->
-
     <View
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -150,7 +156,6 @@
         android:id="@+id/btmaddv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         app:menu="@menu/bottom_add_menu" />
 
 </LinearLayout>

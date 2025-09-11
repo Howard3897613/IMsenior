@@ -65,5 +65,6 @@
     <string name="amount">量：</string>
     <string name="addDate">建立日期：</string>
     <string name="endateItem">有效日期：</string>
+    <string name="label_quantity">重量/單位</string>
 
 </resources>

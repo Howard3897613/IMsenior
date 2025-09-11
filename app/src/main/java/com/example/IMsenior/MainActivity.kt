@@ -208,7 +208,7 @@ class MainActivity : AppCompatActivity() {
     }*/
     private fun listenToFirestoreChanges(uid: String) {
         if (listenerRegistration != null) return
-        listenerRegistration =db.collection("users")
+        listenerRegistration = db.collection("users")
             .document(uid)
             .collection("foods")
             .orderBy("endDate", Query.Direction.ASCENDING)
@@ -221,21 +221,40 @@ class MainActivity : AppCompatActivity() {
                 if (snapshot != null) {
                     foodList.clear()
                     for (doc in snapshot.documents) {
-                        val food = doc.toObject(Food::class.java)
-                        if (food != null) {
-                            val foodWithId = food.copy(id = doc.id)
-                            foodList.add(foodWithId)
+                        val endDateValue = doc.get("endDate")
+                        val endDateInt = when (endDateValue) {
+                            is Long -> endDateValue.toInt()
+                            is String -> endDateValue.toIntOrNull() ?: 0
+                            else -> 0
                         }
+
+                        val categoryValue = doc.get("category")
+                        val categoryInt = when (categoryValue) {
+                            is Long -> categoryValue.toInt()
+                            is String -> categoryValue.toIntOrNull() ?: 0
+                            else -> 0
+                        }
+
+                        val foodWithId = Food(
+                            id = doc.id,
+                            productName = doc.getString("productName") ?: "",
+                            brand = doc.getString("brand") ?: "",
+                            category = categoryInt,
+                            createDate = doc.getString("createDate") ?: "",
+                            endDate = endDateInt,
+                            quantityUnit = doc.getString("quantityUnit") ?: "",
+                            imageUrl = doc.getString("imageUrl") ?: ""
+                        )
+
+                        foodList.add(foodWithId)
                     }
                     foodAdapter.updateData(foodList)
-                    //foodAdapter.notifyDataSetChanged()
                 } else {
                     Toast.makeText(this, "無資料", Toast.LENGTH_SHORT).show()
                 }
             }
-
-
     }
+
     private fun stopFirestoreListener() {
         listenerRegistration?.remove()
         listenerRegistration = null

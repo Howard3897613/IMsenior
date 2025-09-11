@@ -76,9 +76,12 @@ class activity_add : AppCompatActivity() {
                     val foodImageView = findViewById<ImageView>(R.id.ivFoodImage)
                     Glide.with(this)
                         .load(imageUrl)
-                        .placeholder(R.drawable.placeholder_image) // 下載中或空白時顯示
+                        //.placeholder(R.drawable.placeholder_image) // 下載中或空白時顯示
+                        .placeholder(R.drawable.loading)  // 指向 GIF
                         .error(R.drawable.error_image)             // 下載失敗時顯示
                         .into(foodImageView)
+                    // 把 imageUrl 存到 ImageView tag，方便儲存到 Firebase
+                    foodImageView.tag = imageUrl
                 }
             }
         }
@@ -99,6 +102,8 @@ class activity_add : AppCompatActivity() {
 
                 R.id.nav_check -> {
                     Toast.makeText(this, "+++", Toast.LENGTH_SHORT).show()
+                    val foodImageView = findViewById<ImageView>(R.id.ivFoodImage)
+                    val imageUrl = foodImageView.tag?.toString() ?: ""  // 取出之前存的圖片 URL
                     val formatter = SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.getDefault())
                     val data = hashMapOf(
                         "productName" to ProductEd.text.toString(),
@@ -109,8 +114,9 @@ class activity_add : AppCompatActivity() {
                             else -> 0
                         },
                         "createDate" to formatter.format(Date()),
-                        "endDate" to enddateEd.text.toString().toInt(),
-                        "quantityUnit" to quantity.text.toString()
+                        "endDate" to enddateEd.text.toString(),
+                        "quantityUnit" to quantity.text.toString(),
+                        "imageUrl" to imageUrl   // 新增圖片欄位
                     )
                     val user = FirebaseAuth.getInstance().currentUser
                     val uid = user?.uid

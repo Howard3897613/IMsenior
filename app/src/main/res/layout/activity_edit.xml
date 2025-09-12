@@ -34,6 +34,7 @@
 
     <TextView
         android:id="@+id/Product"
+        android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
@@ -44,6 +45,7 @@
 
     <TextView
         android:id="@+id/endate"
+        android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -62,6 +64,7 @@
 
         <RadioButton
             android:id="@+id/food"
+            android:textStyle="bold"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -69,6 +72,7 @@
 
         <RadioButton
             android:id="@+id/source"
+            android:textStyle="bold"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -79,6 +83,7 @@
 
     <TextView
         android:id="@+id/Brand"
+        android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"

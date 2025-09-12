@@ -142,7 +142,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:scaleType="centerCrop"
-        android:background="@drawable/bg_edittext"
+        android:src="@drawable/empty_frame"
         android:contentDescription="食材圖片" />
 
     <!-- 空白空間，撐開剩餘空間 -->

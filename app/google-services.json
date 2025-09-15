@@ -1,27 +1,36 @@
 {
   "project_info": {
-    "project_number": "834126442496",
-    "firebase_url": "https://imsenior-default-rtdb.asia-southeast1.firebasedatabase.app",
-    "project_id": "imsenior",
-    "storage_bucket": "imsenior.firebasestorage.app"
+    "project_number": "41007449409",
+    "project_id": "imsenior-472118",
+    "storage_bucket": "imsenior-472118.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:834126442496:android:02a881b9bfa86ae71428e5",
+        "mobilesdk_app_id": "1:41007449409:android:2cd77ad51de1e7cfc14dc0",
         "android_client_info": {
           "package_name": "com.example.IMsenior"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "41007449409-ldsegq64i5d5iiur7d7enkbbsb8hikqs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
-          "current_key": "AIzaSyDtBkC2JrOFN6FhbkUbV5fXGg4ISU81IhA"
+          "current_key": "AIzaSyDqN9ivyNupZ9aGjUkAQ99jHzNCWTTCz-0"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "41007449409-ldsegq64i5d5iiur7d7enkbbsb8hikqs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

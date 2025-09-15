@@ -101,7 +101,8 @@ class RecipeActivity : AppCompatActivity() {
                 val foods = mutableListOf<String>()
                 for (doc in result) {
                     val name = doc.getString("productName") ?: "未知食材"
-                    val endDate = doc.getString("endDate") ?: "未設定"  // 改用 getString
+                    val endDateInt = doc.getLong("endDate")?.toInt() ?: 0  // 先用 getLong 再轉成 Int
+                    val endDate = endDateInt.toString()
                     val quantity = doc.getString("quantityUnit") ?: "未設定數量"
                     foods.add("$name (保存期限: $endDate、數量: $quantity)")
                 }

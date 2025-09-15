@@ -21,7 +21,7 @@ import android.content.ContentValues.TAG
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-
+import com.google.firebase.auth.FirebaseAuth
 
 
 class FoodAdapter(
@@ -65,9 +65,9 @@ class FoodAdapter(
         holder.name.text = food.productName
         holder.brand.text = food.brand
         holder.category.text = if (food.category == 1) {
-            holder.itemView.context.getString(R.string.category_ingredient)
-        } else {
             holder.itemView.context.getString(R.string.category_food)
+        } else {
+            holder.itemView.context.getString(R.string.category_ingredient)
         }
         holder.createDate.text = food.createDate
         holder.endDate.text = food.endDate.toString()
@@ -109,10 +109,17 @@ class FoodAdapter(
 
         holder.btnClick.setOnClickListener {
             Toast.makeText(context, "你點了 ${food.id}", Toast.LENGTH_SHORT).show()
-         db.collection("foods").document(food.id)
-            .delete()
-            .addOnSuccessListener { Log.d(TAG, "successfully deleted!") }
-            .addOnFailureListener { e -> Log.w(TAG, "Error deleting document", e) }
+            val user = FirebaseAuth.getInstance().currentUser
+            val uid = user?.uid
+            uid?.let {
+                db.collection("users")
+                    .document(it)
+                    .collection("foods")
+                    .document(food.id) // 這裡 food.id 必須是 Firestore 文件 ID
+                    .delete()
+                    .addOnSuccessListener { Log.d(TAG, "successfully deleted!") }
+                    .addOnFailureListener { e -> Log.w(TAG, "Error deleting document", e) }
+            }
         }
         holder.btnedit.setOnClickListener {
             Toast.makeText(context, "你點了編輯 ${food.id}", Toast.LENGTH_SHORT).show()

@@ -114,7 +114,7 @@ class activity_add : AppCompatActivity() {
                             else -> 0
                         },
                         "createDate" to formatter.format(Date()),
-                        "endDate" to enddateEd.text.toString(),
+                        "endDate" to enddateEd.text.toString().toInt(),
                         "quantityUnit" to quantity.text.toString(),
                         "imageUrl" to imageUrl   // 新增圖片欄位
                     )

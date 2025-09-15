@@ -12,7 +12,7 @@ class App : Application() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel(
                 "expiry",                       // channelId：要和後端/Manifest 的一致
-                "食材到期提醒",                      // 使用者在系統看到的頻道名稱
+                getString(R.string.expiryalert),                      // 使用者在系統看到的頻道名稱
                 NotificationManager.IMPORTANCE_HIGH
             ).apply {
                 description = "到期前 3/2/1 天、當天、已過期的提醒"

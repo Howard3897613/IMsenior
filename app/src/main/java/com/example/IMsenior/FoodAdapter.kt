@@ -108,7 +108,7 @@ class FoodAdapter(
         // ========= 日期判斷結束 =========
 
         holder.btnClick.setOnClickListener {
-            Toast.makeText(context, "你點了 ${food.id}", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "你刪除了 ${food.id}", Toast.LENGTH_SHORT).show()
             val user = FirebaseAuth.getInstance().currentUser
             val uid = user?.uid
             uid?.let {

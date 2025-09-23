@@ -63,4 +63,5 @@
     <string name="endateItem">有効期限：</string>
     <string name="label_quantity">重量/単位</string>
     <string name="expiryalert">食材の有効期限リマインダー</string>
+    <string name="camera">しきべつ</string>
 </resources>

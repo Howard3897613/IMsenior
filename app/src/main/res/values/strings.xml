@@ -59,5 +59,6 @@
     <string name="endateItem">有效日期：</string>
     <string name="label_quantity">重量/單位</string>
     <string name="expiryalert">食材到期提醒</string>
+    <string name="camera">辨識</string>
 
 </resources>

@@ -5,7 +5,12 @@
         android:icon="@drawable/barcode_scan"
         android:title="@string/scan" />
     <item
+        android:id="@+id/nav_picture"
+        android:icon="@drawable/camera_enhance_outline"
+        android:title="@string/camera" />
+    <item
         android:id="@+id/nav_check"
         android:icon="@drawable/baseline_check_24"
         android:title="@string/comfirm" />
+
 </menu>

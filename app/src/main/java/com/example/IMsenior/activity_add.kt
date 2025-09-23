@@ -2,7 +2,9 @@ package com.example.IMsenior
 
 import android.app.DatePickerDialog
 import android.content.ContentValues.TAG
+import android.graphics.Bitmap
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
@@ -10,17 +12,27 @@ import android.widget.ImageView
 import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.bumptech.glide.Glide
+import androidx.lifecycle.lifecycleScope
 
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.Firebase
+import com.google.firebase.ai.GenerativeModel
+import com.google.firebase.ai.type.GenerativeBackend
+import com.google.firebase.ai.ai
+import com.google.firebase.ai.type.Schema
+import com.google.firebase.ai.type.content
+import com.google.firebase.ai.type.generationConfig
+
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.firestore
 import com.journeyapps.barcodescanner.ScanContract
 import com.journeyapps.barcodescanner.ScanOptions
+import kotlinx.coroutines.launch
 import okhttp3.Call
 import okhttp3.Callback
 import okhttp3.OkHttpClient
@@ -36,6 +48,7 @@ import java.util.Locale
 class activity_add : AppCompatActivity() {
     private val apiHelper = ApiHelper()
     private lateinit var foodAdapter: FoodAdapter
+    private lateinit var generativeModel: GenerativeModel
 
     private val barcodeLauncher = registerForActivityResult(ScanContract()) { result ->
         if (result.contents != null) {
@@ -55,6 +68,21 @@ class activity_add : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        val jsonSchema = Schema.obj(
+            mapOf(
+                "productName" to Schema.string(),
+                "brand" to Schema.string(),
+                "quantityUnit" to Schema.string(),
+                "endDate" to Schema.string(),  // 或 integer，看你怎麼想
+            ),optionalProperties = listOf("endDate")
+        )
+        generativeModel = Firebase.ai(backend = GenerativeBackend.googleAI()).generativeModel(
+            modelName = "gemini-2.5-flash",
+            generationConfig = generationConfig {
+                responseMimeType = "application/json"
+                responseSchema = jsonSchema
+            })
+
         val comfirm_Barcode = findViewById<Button>(R.id.confirm_barcode)
         val ProductEd = findViewById<EditText>(R.id.editProdect)
         val enddateEd = findViewById<EditText>(R.id.editenddate)
@@ -132,9 +160,12 @@ class activity_add : AppCompatActivity() {
                                 Log.w(TAG, "Error adding document", e)
                             }
                     }
-                    //val i = Intent().putExtras(b)
-                    //setResult(RESULT_OK,i)
                     finish()
+                    true
+                }
+
+                R.id.nav_picture -> {
+                    pickImageForAI()
                     true
                 }
 
@@ -146,42 +177,69 @@ class activity_add : AppCompatActivity() {
             showDatePickerDialog(enddateEd)
         }
 
-        /*finish.setOnClickListener {
-            /*val b = bundleOf(
-                "productName" to ProductEd.text.toString(),
-                "genericName" to GenericEd.text.toString(),
-                "category" to category.findViewById<RadioButton>(category.checkedRadioButtonId).text.toString()
-            )*/
-            val formatter = SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.getDefault())
-            val data = hashMapOf(
-                "productName" to ProductEd.text.toString(),
-                "brand" to brandEd.text.toString(),
-                "category" to when (category.checkedRadioButtonId) {
-                    R.id.food -> 1
-                    R.id.source -> 2
-                    else -> 0
-                },
-                "createDate" to formatter.format(Date()),
-                "endDate" to enddateEd.text.toString().toInt(),
-                "quantityUnit" to quantity.text.toString()
-            )
-
-            db.collection("foods")
-                .add(data)
-                .addOnSuccessListener { documentReference ->
-                    Log.d(TAG, "DocumentSnapshot written with ID: ${documentReference.id}")
-                }
-                .addOnFailureListener { e ->
-                    Log.w(TAG, "Error adding document", e)
-                }
-            //val i = Intent().putExtras(b)
-            //setResult(RESULT_OK,i)
-            finish()
-        }*/
-
 
 
     }
+    private val imagePicker = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+        uri?.let {
+            val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, uri)
+            analyzeImageWithAI(bitmap)
+        }
+    }
+
+    private fun pickImageForAI() {
+        imagePicker.launch("image/*")
+    }
+
+    private fun analyzeImageWithAI(bitmap: Bitmap) {
+        val promt = getString(R.string.returnAI)
+        lifecycleScope.launch {
+            try {
+                val request = content {
+                    image(bitmap)
+                    text("""
+                    使用者要求：$promt
+                    請分析這張食品圖片，並以 JSON 格式回覆，格式如下：
+                    {
+                        "productName": "...",
+                        "brand": "...",
+                        "quantityUnit": "...",
+                        "endDate": "YYYYMMDD"
+                    }
+                    endDate可以推測方式進行
+                """.trimIndent())
+                }
+
+                val response = generativeModel.generateContent(request)
+                val result = response.text ?: "{}"
+                print(response.text)
+
+                // 嘗試解析 JSON
+                try {
+                    val json = JSONObject(result)
+                    val productName = json.optString("productName", "")
+                    val brand = json.optString("brand", "")
+                    val quantity = json.optString("quantityUnit", "")
+                    val endDate = json.optString("endDate", "")
+
+                    // 自動填入輸入框
+                    findViewById<EditText>(R.id.editProdect).setText(productName)
+                    findViewById<EditText>(R.id.editBrand).setText(brand)
+                    findViewById<EditText>(R.id.quantity).setText(quantity)
+                    findViewById<EditText>(R.id.editenddate).setText(endDate)
+
+                } catch (e: Exception) {
+                    Toast.makeText(this@activity_add, "解析失敗: ${e.message}", Toast.LENGTH_SHORT).show()
+                    Log.e("解析失敗", "AI 分析錯誤", e)
+                }
+
+            } catch (e: Exception) {
+                Toast.makeText(this@activity_add, "AI 分析錯誤: ${e.message}", Toast.LENGTH_SHORT).show()
+                Log.e("AI_ANALYSIS", "AI 分析錯誤", e)
+            }
+        }
+    }
+
 
 
     private fun showDatePickerDialog(enddateed: EditText) {
@@ -202,6 +260,9 @@ class activity_add : AppCompatActivity() {
 
         datePickerDialog.show()
     }
+
+
+
 }
 
 class ApiHelper {
@@ -238,4 +299,6 @@ class ApiHelper {
         })
     }
 }
+
+
 

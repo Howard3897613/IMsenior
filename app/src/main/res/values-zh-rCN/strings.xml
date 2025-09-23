@@ -71,4 +71,5 @@ APP开发人员名单：\n
     <string name="endateItem">保质期：</string>
     <string name="label_quantity">重量/单位</string>
     <string name="expiryalert">食材到期提醒</string>
+    <string name="camera">辨识</string>
 </resources>

@@ -193,12 +193,16 @@ class activity_add : AppCompatActivity() {
 
     private fun analyzeImageWithAI(bitmap: Bitmap) {
         val promt = getString(R.string.returnAI)
+        val today = Date()
+        val formatter = SimpleDateFormat("yyyy-MM-dd hh:mm:ss")
+        println("今日日期: ${formatter.format(today)}")
         lifecycleScope.launch {
             try {
                 val request = content {
                     image(bitmap)
                     text("""
                     使用者要求：$promt
+                    今日日期：${formatter.format(today)}
                     請分析這張食品圖片，並以 JSON 格式回覆，格式如下：
                     {
                         "productName": "...",

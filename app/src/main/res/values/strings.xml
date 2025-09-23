@@ -60,5 +60,7 @@
     <string name="label_quantity">重量/單位</string>
     <string name="expiryalert">食材到期提醒</string>
     <string name="camera">辨識</string>
+    <string name="Aishowhere">AI 回覆將顯示於此</string>
+    <string name="AIthinking">AI 思考中......</string>
 
 </resources>

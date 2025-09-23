@@ -71,5 +71,7 @@
     <string name="endateItem">"Expiration Date: "</string>
     <string name="label_quantity">Weight/Unit</string>
     <string name="expiryalert">Food Expiry Reminder</string>
-    <string name="camera">Identification</string>
+    <string name="camera">Recognition</string>
+    <string name="Aishowhere">AI reply will appear here.</string>
+    <string name="AIthinking">AI is thinking....</string>
 </resources>

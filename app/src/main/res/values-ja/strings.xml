@@ -64,4 +64,6 @@
     <string name="label_quantity">重量/単位</string>
     <string name="expiryalert">食材の有効期限リマインダー</string>
     <string name="camera">しきべつ</string>
+    <string name="Aishowhere">"AIの返信がここに表示されます "</string>
+    <string name="AIthinking">AIが考えています...</string>
 </resources>

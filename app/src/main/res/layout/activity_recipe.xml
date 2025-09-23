@@ -37,7 +37,7 @@
                         android:id="@+id/tvResponse"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="AI 回覆會出現在這裡"
+                        android:text="@string/Aishowhere"
                         android:textSize="16sp"
                         android:lineSpacingExtra="4dp"/>
                 </ScrollView>

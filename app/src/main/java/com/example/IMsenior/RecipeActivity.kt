@@ -116,7 +116,7 @@ class RecipeActivity : AppCompatActivity() {
     }
 
     private fun askAI(prompt: String) {
-        tvResponse.text = "AI 思考中..."
+        tvResponse.text = getString(R.string.AIthinking)
         lifecycleScope.launch {
             try {
                 val request = content {

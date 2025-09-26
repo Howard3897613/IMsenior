@@ -210,7 +210,8 @@ class activity_add : AppCompatActivity() {
                         "quantityUnit": "...",
                         "endDate": "YYYYMMDD"
                     }
-                    endDate可以推測方式進行
+                    endDate若無法判斷可以推測方式進行，
+                    quantityUnit以數量加單位回傳
                 """.trimIndent())
                 }
 

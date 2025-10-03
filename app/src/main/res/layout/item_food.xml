@@ -41,45 +41,6 @@
             app:layout_constraintEnd_toStartOf="@id/ivFoodItem"
             app:layout_constraintTop_toTopOf="parent"/>
 
-        <!-- 品牌 -->
-        <TextView
-            android:id="@+id/tvBrand"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            tools:text="超級無敵大品牌"
-            android:textAppearance="?attr/textAppearanceSubtitle1"
-            android:textColor="?attr/colorOnSurfaceVariant"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="@id/tvName"
-            app:layout_constraintTop_toBottomOf="@id/tvName"
-            android:layout_marginTop="2dp"/>
-
-        <!-- 分類 -->
-        <TextView
-            android:id="@+id/tvCategory"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="休閒零食"
-            android:textAppearance="?attr/textAppearanceBody2"
-            android:textColor="?attr/colorOnSecondaryContainer"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
-            android:paddingTop="4dp"
-            android:paddingBottom="4dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvBrand"
-            android:layout_marginTop="4dp"/>
-
-        <com.google.android.material.divider.MaterialDivider
-            android:id="@+id/divider"
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            app:dividerColor="?attr/colorOutlineVariant"
-            app:layout_constraintTop_toBottomOf="@id/tvCategory"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="12dp"/>
-
         <!-- 到期日 -->
         <LinearLayout
             android:id="@+id/llEndDate"
@@ -88,9 +49,9 @@
             android:orientation="horizontal"
             android:gravity="center_vertical"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/divider"
-            android:layout_marginTop="12dp">
+            app:layout_constraintEnd_toEndOf="@id/tvName"
+            app:layout_constraintTop_toBottomOf="@id/tvName"
+            android:layout_marginTop="2dp">
 
             <ImageView
                 android:layout_width="20dp"
@@ -118,112 +79,153 @@
                 android:textStyle="bold"/>
         </LinearLayout>
 
-        <!-- 數量 -->
+        <!-- expand -->
         <LinearLayout
-            android:id="@+id/llQuantity"
+            android:id="@+id/expand"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="12dp"
+            android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/llEndDate"
-            android:layout_marginTop="8dp">
+            android:visibility="gone">
 
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/ic_package_24"
-                app:tint="?attr/colorPrimary"
-                android:layout_marginEnd="8dp"
-                android:contentDescription="數量圖示"/>
-
-            <TextView
-                android:layout_width="wrap_content"
+            <!-- 品牌 + 分類 (同一橫排) -->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/amount"
-                android:textAppearance="?attr/textAppearanceLabelLarge"
-                android:textColor="?attr/colorOnSurfaceVariant"
-                android:layout_marginEnd="4dp"/>
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
 
-            <TextView
-                android:id="@+id/tvQuantity"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/tvBrand"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?attr/textAppearanceSubtitle1"
+                    android:textColor="?attr/colorOnSurfaceVariant"
+                    tools:text="超級無敵大品牌" />
+
+                <TextView
+                    android:id="@+id/tvCategory"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:paddingStart="10dp"
+                    android:paddingTop="4dp"
+                    android:paddingEnd="10dp"
+                    android:paddingBottom="4dp"
+                    android:textAppearance="?attr/textAppearanceBody2"
+                    android:textColor="?attr/colorOnSecondaryContainer"
+                    tools:text="休閒零食" />
+            </LinearLayout>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="12dp"
+                app:dividerColor="?attr/colorOutlineVariant" />
+
+            <!-- 數量 -->
+            <LinearLayout
+                android:id="@+id/llQuantity"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:text="3 包"
-                android:textAppearance="?attr/textAppearanceBodyLarge"
-                android:textColor="?attr/colorOnSurface"/>
-        </LinearLayout>
+                android:layout_marginTop="12dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-        <!-- 建立日期 -->
-        <LinearLayout
-            android:id="@+id/llCreateDate"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/llQuantity"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="16dp">
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginEnd="8dp"
+                    android:contentDescription="數量圖示"
+                    android:src="@drawable/ic_package_24"
+                    app:tint="?attr/colorPrimary" />
 
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/ic_today_calendar"
-                app:tint="?attr/colorOnSurfaceVariant"
-                android:layout_marginEnd="8dp"
-                android:contentDescription="建立日期圖示"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="4dp"
+                    android:text="@string/amount"
+                    android:textAppearance="?attr/textAppearanceLabelLarge"
+                    android:textColor="?attr/colorOnSurfaceVariant" />
 
-            <TextView
-                android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/tvQuantity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?attr/textAppearanceBodyLarge"
+                    android:textColor="?attr/colorOnSurface"
+                    tools:text="3 包" />
+            </LinearLayout>
+
+            <!-- 建立日期 -->
+            <LinearLayout
+                android:id="@+id/llCreateDate"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/addDate"
-                android:textAppearance="?attr/textAppearanceLabelLarge"
-                android:textColor="?attr/colorOnSurfaceVariant"
-                android:layout_marginEnd="4dp"/>
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/tvCreateDate"
-                android:layout_width="wrap_content"
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginEnd="8dp"
+                    android:contentDescription="建立日期圖示"
+                    android:src="@drawable/ic_today_calendar"
+                    app:tint="?attr/colorOnSurfaceVariant" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="4dp"
+                    android:text="@string/addDate"
+                    android:textAppearance="?attr/textAppearanceLabelLarge"
+                    android:textColor="?attr/colorOnSurfaceVariant" />
+
+                <TextView
+                    android:id="@+id/tvCreateDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?attr/textAppearanceBodyMedium"
+                    android:textColor="?attr/colorOnSurfaceVariant"
+                    tools:text="2023-10-01" />
+            </LinearLayout>
+
+            <!-- 編輯/刪除按鈕 -->
+            <LinearLayout
+                android:id="@+id/llButtons"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:text="2023-10-01"
-                android:textAppearance="?attr/textAppearanceBodyMedium"
-                android:textColor="?attr/colorOnSurfaceVariant"/>
-        </LinearLayout>
+                android:gravity="end"
+                android:orientation="horizontal">
 
-        <!-- 編輯/刪除按鈕 -->
-        <LinearLayout
-            android:id="@+id/llButtons"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="end"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/llCreateDate">
+                <ImageButton
+                    android:id="@+id/btnEdit"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="編輯"
+                    android:padding="8dp"
+                    android:src="@drawable/pencil"
+                    app:tint="?attr/colorPrimary" />
 
-            <ImageButton
-                android:id="@+id/btnEdit"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:src="@drawable/pencil"
-                android:contentDescription="編輯"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:padding="8dp"
-                app:tint="?attr/colorPrimary"/>
+                <ImageButton
+                    android:id="@+id/btnClick"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="8dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="刪除"
+                    android:padding="8dp"
+                    android:src="@drawable/close_thick"
+                    app:tint="?attr/colorError" />
+            </LinearLayout>
 
-            <ImageButton
-                android:id="@+id/btnClick"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:src="@drawable/close_thick"
-                android:contentDescription="刪除"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:padding="8dp"
-                android:layout_marginStart="8dp"
-                app:tint="?attr/colorError"/>
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

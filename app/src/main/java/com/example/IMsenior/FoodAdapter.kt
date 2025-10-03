@@ -19,6 +19,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import android.content.ContentValues.TAG
 import android.widget.ImageView
+import android.widget.LinearLayout
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.google.firebase.auth.FirebaseAuth
@@ -52,6 +53,7 @@ class FoodAdapter(
         val btnClick: ImageButton = itemView.findViewById(R.id.btnClick)
         val btnedit: ImageButton = itemView.findViewById(R.id.btnEdit)
         val foodImage: ImageView = itemView.findViewById(R.id.ivFoodItem)
+        val expand:LinearLayout = itemView.findViewById(R.id.expand)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoodViewHolder {
@@ -133,6 +135,13 @@ class FoodAdapter(
                 putExtra("quantityUnit", food.quantityUnit)
             }
             context.startActivity(intent)
+        }
+        holder.itemView.setOnClickListener {
+            if (holder.expand.visibility == View.GONE) {
+                holder.expand.visibility = View.VISIBLE
+            } else {
+                holder.expand.visibility = View.GONE
+            }
         }
     }
 

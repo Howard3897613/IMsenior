@@ -58,8 +58,8 @@ class MainActivity : AppCompatActivity() {
             finish()
             return
         }
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_main)
+        //enableEdgeToEdge()
+        //setContentView(R.layout.activity_main)
         // ✅ 上傳／刷新 FCM Token（docId=token，不會重覆長資料）
         FcmTokenUploader.uploadFcmTokenIfNeeded()
 

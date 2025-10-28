@@ -65,6 +65,7 @@ class FoodAdapter(
         val food = filteredList[position]
         val db = Firebase.firestore
         holder.name.text = food.productName
+        holder.name.isSelected = true
         holder.brand.text = food.brand
         holder.category.text = if (food.category == 1) {
             holder.itemView.context.getString(R.string.category_food)

@@ -66,4 +66,6 @@
     <string name="camera">しきべつ</string>
     <string name="Aishowhere">"AIの返信がここに表示されます "</string>
     <string name="AIthinking">AIが考えています...</string>
+    <string name="takpic">写真</string>
+    <string name="picpic">アルバムから選択</string>
 </resources>

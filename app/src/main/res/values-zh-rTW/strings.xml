@@ -71,5 +71,7 @@
     <string name="camera">辨識</string>
     <string name="Aishowhere">AI 回覆將顯示於此</string>
     <string name="AIthinking">AI 思考中......</string>
+    <string name="takpic">拍照</string>
+    <string name="picpic">從相簿中選擇</string>
 
 </resources>

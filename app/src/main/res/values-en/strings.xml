@@ -74,4 +74,6 @@
     <string name="camera">Recognition</string>
     <string name="Aishowhere">AI reply will appear here.</string>
     <string name="AIthinking">AI is thinking....</string>
+    <string name="takpic">take a photograph</string>
+    <string name="picpic">Select from album</string>
 </resources>

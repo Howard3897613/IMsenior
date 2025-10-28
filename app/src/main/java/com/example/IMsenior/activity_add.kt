@@ -1,8 +1,11 @@
 package com.example.IMsenior
 
+import android.app.AlertDialog
 import android.app.DatePickerDialog
+import android.content.ContentValues
 import android.content.ContentValues.TAG
 import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
@@ -49,6 +52,8 @@ class activity_add : AppCompatActivity() {
     private val apiHelper = ApiHelper()
     private lateinit var foodAdapter: FoodAdapter
     private lateinit var generativeModel: GenerativeModel
+    private var imageUri: Uri? = null
+
 
     private val barcodeLauncher = registerForActivityResult(ScanContract()) { result ->
         if (result.contents != null) {
@@ -165,13 +170,15 @@ class activity_add : AppCompatActivity() {
                 }
 
                 R.id.nav_picture -> {
-                    pickImageForAI()
+                    //pickImageForAI()
+                    showImageSourceDialog()
                     true
                 }
 
                 else -> false
             }
         }
+
 
         dateIcon.setOnClickListener {
             showDatePickerDialog(enddateEd)
@@ -185,6 +192,54 @@ class activity_add : AppCompatActivity() {
             val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, uri)
             analyzeImageWithAI(bitmap)
         }
+    }
+
+    //拍照
+    private val takePictureLauncher =
+        registerForActivityResult(ActivityResultContracts.TakePicture()) { success ->
+            if (success) {
+                imageUri?.let { uri ->
+                    val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, uri)
+                    analyzeImageWithAI(bitmap)
+                }
+            } else {
+                Toast.makeText(this, "Cancel", Toast.LENGTH_SHORT).show()
+            }
+        }
+    private fun showImageSourceDialog() {
+        val options = arrayOf(getString(R.string.takpic), getString(R.string.picpic))
+        AlertDialog.Builder(this)
+            .setTitle(getString(R.string.camera))
+            .setItems(options) { _, which ->
+                when (which) {
+                    0 -> openCamera()
+                    1 -> openGallery()
+                }
+            }
+            .show()
+    }
+
+    private fun openCamera() {
+        val uri = createImageUri()
+        if (uri != null) {
+            imageUri = uri
+            takePictureLauncher.launch(uri)
+        } else {
+            Toast.makeText(this, "Cannot store", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+
+    private fun openGallery() {
+        imagePicker.launch("image/*")
+    }
+
+    private fun createImageUri(): Uri? {
+        val contentValues = ContentValues().apply {
+            put(MediaStore.Images.Media.DISPLAY_NAME, "photo_${System.currentTimeMillis()}.jpg")
+            put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg")
+        }
+        return contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues)
     }
 
     private fun pickImageForAI() {
@@ -265,6 +320,8 @@ class activity_add : AppCompatActivity() {
 
         datePickerDialog.show()
     }
+
+
 
 
 

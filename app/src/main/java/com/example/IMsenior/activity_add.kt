@@ -9,6 +9,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
@@ -99,6 +100,7 @@ class activity_add : AppCompatActivity() {
         val dateIcon = findViewById<ImageView>(R.id.dateIcon)
         comfirm_Barcode.setOnClickListener {
             val testBarcode = findViewById<EditText>(R.id.EtBarcode).text.toString()
+            showLoading(true)
             apiHelper.fetchFoodData(testBarcode) { productName, Brand, Quantity, imageUrl ->
                 runOnUiThread {
                     ProductEd.setText(productName)
@@ -115,6 +117,7 @@ class activity_add : AppCompatActivity() {
                         .into(foodImageView)
                     // 把 imageUrl 存到 ImageView tag，方便儲存到 Firebase
                     foodImageView.tag = imageUrl
+                    showLoading(false)
                 }
             }
         }
@@ -252,6 +255,7 @@ class activity_add : AppCompatActivity() {
         val formatter = SimpleDateFormat("yyyy-MM-dd hh:mm:ss")
         println("今日日期: ${formatter.format(today)}")
         lifecycleScope.launch {
+            showLoading(true)
             try {
                 val request = content {
                     image(bitmap)
@@ -296,6 +300,8 @@ class activity_add : AppCompatActivity() {
             } catch (e: Exception) {
                 Toast.makeText(this@activity_add, "AI 分析錯誤: ${e.message}", Toast.LENGTH_SHORT).show()
                 Log.e("AI_ANALYSIS", "AI 分析錯誤", e)
+            }finally {
+                showLoading(false)
             }
         }
     }
@@ -323,6 +329,19 @@ class activity_add : AppCompatActivity() {
 
 
 
+    private fun showLoading(isLoading: Boolean) {
+        val overlay = findViewById<View>(R.id.loadingOverlay)
+        val animTime = 200L
+        if (isLoading) {
+            overlay.alpha = 0f
+            overlay.visibility = View.VISIBLE
+            overlay.animate().alpha(1f).setDuration(animTime).start()
+        } else {
+            overlay.animate().alpha(0f).setDuration(animTime).withEndAction {
+                overlay.visibility = View.GONE
+            }.start()
+        }
+    }
 
 
 }

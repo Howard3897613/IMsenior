@@ -1,161 +1,180 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp"
     tools:context=".activity_add">
 
-    <!-- 條碼 -->
+    <!-- 主要內容 -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- 條碼 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/EtBarcode"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="56dp"
+                android:hint="@string/hint_barcode"
+                android:inputType="text"
+                android:background="@drawable/bg_edittext"/>
+
+            <Button
+                style="@style/Widget.Material3.Button.TonalButton"
+                android:id="@+id/confirm_barcode"
+                android:layout_width="wrap_content"
+                android:layout_height="56dp"
+                android:text="@string/comfirm"
+                android:background="@drawable/bg_edittext"/>
+        </LinearLayout>
+
+        <!-- 類別選擇 -->
+        <RadioGroup
+            android:id="@+id/category"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="20dp">
+
+            <RadioButton
+                android:id="@+id/food"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/category_food"
+                android:textSize="20sp"
+                android:padding="12dp"/>
+
+            <RadioButton
+                android:id="@+id/source"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/category_ingredient"
+                android:textSize="20sp"
+                android:padding="12dp"/>
+        </RadioGroup>
+
+        <!-- 產品名稱 -->
+        <TextView
+            android:id="@+id/Product"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textStyle="bold"
+            android:text="@string/label_product_name" />
 
         <EditText
-            android:id="@+id/EtBarcode"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="56dp"
-            android:hint="@string/hint_barcode"
+            android:id="@+id/editProdect"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="@string/hint_product_name"
             android:inputType="text"
             android:background="@drawable/bg_edittext"/>
 
-        <Button
-            style="@style/Widget.Material3.Button.TonalButton"
-            android:id="@+id/confirm_barcode"
-            android:layout_width="wrap_content"
-            android:layout_height="56dp"
-            android:text="@string/comfirm"
-            android:background="@drawable/bg_edittext"/>
-    </LinearLayout>
-
-    <!-- 類別選擇 (食材 / 食物) -->
-    <RadioGroup
-        android:id="@+id/category"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_marginTop="20dp">
-
-        <RadioButton
-            android:id="@+id/food"
+        <!-- 保存期限 -->
+        <TextView
+            android:id="@+id/endate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/category_food"
-            android:textSize="20sp"
-            android:padding="12dp"
-            />
+            android:layout_marginTop="16dp"
+            android:textStyle="bold"
+            android:text="@string/label_end_date" />
 
-        <RadioButton
-            android:id="@+id/source"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/editenddate"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="55dp"
+                android:hint="@string/hint_end_date"
+                android:inputType="text"
+                android:background="@drawable/bg_edittext"/>
+
+            <ImageView
+                android:id="@+id/dateIcon"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:src="@android:drawable/ic_menu_agenda"/>
+        </LinearLayout>
+
+        <!-- 品牌名稱 -->
+        <TextView
+            android:id="@+id/Brand"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/category_ingredient"
-            android:textSize="20sp"
-            android:padding="12dp"
-            />
-    </RadioGroup>
-
-    <!-- 產品名稱 -->
-    <TextView
-        android:id="@+id/Product"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:textStyle="bold"
-        android:text="@string/label_product_name" />
-
-    <EditText
-        android:id="@+id/editProdect"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:hint="@string/hint_product_name"
-        android:inputType="text"
-        android:background="@drawable/bg_edittext"/>
-
-    <!-- 保存期限 -->
-    <TextView
-        android:id="@+id/endate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:textStyle="bold"
-        android:text="@string/label_end_date" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+            android:layout_marginTop="16dp"
+            android:textStyle="bold"
+            android:text="@string/label_brand_name" />
 
         <EditText
-            android:id="@+id/editenddate"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="55dp"
-            android:hint="@string/hint_end_date"
+            android:id="@+id/editBrand"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:hint="@string/hint_brand_name"
             android:inputType="text"
             android:background="@drawable/bg_edittext"/>
 
+        <!-- 數量 -->
+        <EditText
+            android:id="@+id/quantity"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:hint="@string/hint_quantity"
+            android:inputType="text"
+            android:background="@drawable/bg_edittext"/>
+
+        <!-- 食材圖片 -->
         <ImageView
-            android:id="@+id/dateIcon"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:src="@android:drawable/ic_menu_agenda"/>
+            android:id="@+id/ivFoodImage"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/empty_frame"
+            android:contentDescription="食材圖片" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/btmaddv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:menu="@menu/bottom_add_menu" />
     </LinearLayout>
 
-    <!-- 品牌名稱 -->
-    <TextView
-        android:id="@+id/Brand"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:textStyle="bold"
-        android:text="@string/label_brand_name" />
-
-    <EditText
-        android:id="@+id/editBrand"
+    <!-- 🔥 覆蓋在最上層的 loading 畫面 -->
+    <FrameLayout
+        android:id="@+id/loadingOverlay"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:hint="@string/hint_brand_name"
-        android:inputType="text"
-        android:background="@drawable/bg_edittext"/>
+        android:layout_height="match_parent"
+        android:background="#80000000"
+        android:visibility="gone"
+        android:gravity="center">
 
-    <!-- 數量 -->
-    <EditText
-        android:id="@+id/quantity"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:hint="@string/hint_quantity"
-        android:inputType="text"
-        android:background="@drawable/bg_edittext"/>
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:indeterminate="true"/>
+    </FrameLayout>
 
-    <!-- 食材圖片 -->
-    <ImageView
-        android:id="@+id/ivFoodImage"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/empty_frame"
-        android:contentDescription="食材圖片" />
-
-    <!-- 空白空間，撐開剩餘空間 -->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
-
-    <!-- 底部導航 -->
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/btmaddv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:menu="@menu/bottom_add_menu" />
-
-</LinearLayout>
+</FrameLayout>

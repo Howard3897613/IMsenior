@@ -94,4 +94,9 @@ dependencies {
     //implementation("com.google.firebase:firebase-database")
 
     //implementation("com.google.firebase:firebase-core:21.1.1")
+
+    //google map & locate
+    implementation("com.google.android.gms:play-services-maps:18.2.0")
+    implementation("com.google.android.gms:play-services-location:21.0.1")
+
 }

@@ -12,4 +12,9 @@
         android:id="@+id/nav_help"
         android:icon="@drawable/help_circle_outline"
         android:title="@string/help_title" />
+    <item
+        android:id="@+id/nav_nearby_shops"
+        android:icon="@android:drawable/ic_menu_mylocation"
+        android:title="附近賣食品的店" />
+
 </menu>

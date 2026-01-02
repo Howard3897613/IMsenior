@@ -73,5 +73,6 @@
     <string name="AIthinking">AI 思考中......</string>
     <string name="takpic">拍照</string>
     <string name="picpic">從相簿中選擇</string>
+    <string name="aroundshop">附近的購物點</string>
 
 </resources>

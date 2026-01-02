@@ -76,4 +76,5 @@ APP开发人员名单：\n
     <string name="AIthinking">AI 思考中......</string>
     <string name="takpic">拍照</string>
     <string name="picpic">从相簿中选择</string>
+    <string name="aroundshop">附近的购物点</string>
 </resources>

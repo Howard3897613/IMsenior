@@ -48,6 +48,9 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
+//圖片存儲
+import com.google.firebase.storage.FirebaseStorage
+import java.io.ByteArrayOutputStream
 
 class activity_add : AppCompatActivity() {
     private val apiHelper = ApiHelper()
@@ -256,6 +259,7 @@ class activity_add : AppCompatActivity() {
         println("今日日期: ${formatter.format(today)}")
         lifecycleScope.launch {
             showLoading(true)
+            uploadImageToFirebase(bitmap)
             try {
                 val request = content {
                     image(bitmap)
@@ -340,6 +344,45 @@ class activity_add : AppCompatActivity() {
             overlay.animate().alpha(0f).setDuration(animTime).withEndAction {
                 overlay.visibility = View.GONE
             }.start()
+        }
+    }
+
+    private fun uploadImageToFirebase(bitmap: Bitmap) {
+        val storageRef = FirebaseStorage.getInstance().reference
+        // 建立一個唯一的檔名，例如: images/userUID_timestamp.jpg
+        val fileName = "images/${FirebaseAuth.getInstance().currentUser?.uid}_${System.currentTimeMillis()}.jpg"
+        val imageRef = storageRef.child(fileName)
+
+        // 將 Bitmap 壓縮為 JPEG
+        val baos = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 80, baos) // 品質 80
+        val data = baos.toByteArray()
+
+        // 上傳
+        val uploadTask = imageRef.putBytes(data)
+
+        // 顯示上傳中的 loading (可選，看你要不要跟 AI 分析共用 loading)
+        // showLoading(true)
+
+        uploadTask.addOnSuccessListener {
+            // 上傳成功，取得下載 URL
+            imageRef.downloadUrl.addOnSuccessListener { uri ->
+                val downloadUrl = uri.toString()
+                Log.d(TAG, "圖片上傳成功: $downloadUrl")
+
+                // *** 關鍵步驟 ***
+                // 1. 用 Glide 顯示 (雖然本地已有 bitmap，但這裡確認上傳成功再顯示也可以，或維持原樣)
+                val foodImageView = findViewById<ImageView>(R.id.ivFoodImage)
+                Glide.with(this)
+                    .load(downloadUrl) // 這裡改用網址載入，確保顯示的是雲端那張
+                    .placeholder(R.drawable.loading)
+                    .into(foodImageView)
+
+                // 2. 將網址存入 Tag，讓你的「儲存按鈕」邏輯可以讀取到
+                foodImageView.tag = downloadUrl
+            }
+        }.addOnFailureListener {
+            Toast.makeText(this, "圖片上傳失敗", Toast.LENGTH_SHORT).show()
         }
     }
 

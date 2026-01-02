@@ -76,4 +76,5 @@
     <string name="AIthinking">AI is thinking....</string>
     <string name="takpic">take a photograph</string>
     <string name="picpic">Select from album</string>
+    <string name="aroundshop">Nearby Shopping Spots</string>
 </resources>
